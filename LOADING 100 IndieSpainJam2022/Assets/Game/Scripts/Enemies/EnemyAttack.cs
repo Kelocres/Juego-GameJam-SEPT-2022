@@ -29,15 +29,13 @@ public class EnemyAttack : MonoBehaviour
     {
         isMoving = moveScript.isMoving;
 
-        if(!isMoving)
-        {
-            shootScript.enabled = true;
-        }
+        shootScript.enabled = !isMoving;       
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("PLayer"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             //damage
         }

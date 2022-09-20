@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    public float speed;
-    Transform player;
+    [SerializeField]
+    float velocity = 5f;
 
-    private void Start()
+    private void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        StartCoroutine(Die());
+        StartCoroutine(lostBullet());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        Move();
-    }
-    void Move()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        transform.position += transform.forward * Time.deltaTime * velocity;
     }
 
-    IEnumerator Die()
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            RecycleBullet();
+            //damage player
+        }
+        else
+        {
+            RecycleBullet();
+        }
+    }
+
+    IEnumerator lostBullet()
     {
         yield return new WaitForSeconds(10f);
-        Destroy(gameObject);
+        RecycleBullet();
     }
+    void RecycleBullet()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
