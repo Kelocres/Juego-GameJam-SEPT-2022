@@ -5,6 +5,10 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]Camera camforMouse;
+
+    public Camera CamforMouse { get => camforMouse; set => camforMouse = value; }
+
     void Start()
     {
         

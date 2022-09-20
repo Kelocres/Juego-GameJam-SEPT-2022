@@ -25,7 +25,7 @@ public class PlayerMediator : MonoBehaviour
     public void CanLook(float mouseSensitivity)
     {
         float getAxisMousex = Input.GetAxisRaw("Mouse X");
-        movecontroller.Look(  mouseSensitivity,getAxisMousex);
+        movecontroller.Look(cameracontroller.CamforMouse,mouseSensitivity,getAxisMousex);
     }
     public void CanMove(float sprintSpeed,float walkSpeed, float smoothTime,float mouseSensitivity )
     {

@@ -12,13 +12,17 @@ public class Player : MonoBehaviour
     {
         var gobj = gameObject.gameObject;
         mediator.Configure(gobj);
-        Cursor.visible = false;
+         
     }
 
     // Update is called once per frame
     void Update()
     {
         CanMove();
+    
+    }
+    private void FixedUpdate()
+    {
         CanLook();
     }
     public void CanMove()
