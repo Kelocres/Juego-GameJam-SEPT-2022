@@ -21,19 +21,20 @@ public class EnemyMove : MonoBehaviour
     public bool keepDistance;
     public float distance;
     public bool isMoving = true;
-
-    // Start is called before the first frame update
+  
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        transform.LookAt(player);
         pos = transform.position;
-        axis = transform.right;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(player);
+        axis = transform.right;
+
         if(keepDistance)
         {
             KeepDistance();
@@ -49,6 +50,7 @@ public class EnemyMove : MonoBehaviour
         if(Vector3.Distance(transform.position,player.position)>distance)
         {
             Move();
+            isMoving = true;
         }
         else
         {
@@ -82,6 +84,9 @@ public class EnemyMove : MonoBehaviour
         pos += transform.forward * Time.deltaTime * speed;
         transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
     }
+
+
+
 
 
 }
