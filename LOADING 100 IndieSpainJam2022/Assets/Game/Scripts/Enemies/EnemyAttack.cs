@@ -8,14 +8,31 @@ public class EnemyAttack : MonoBehaviour
     public Combat combatType = Combat.Meele;
 
     EnemyMove moveScript;
-
+    [Header("Meele")]
     public float damage;
 
-    public GameObject bullet;
+    [Header("Shooting")]
+    EnemyShoot shootScript;
+    bool isMoving;
 
     private void Start()
     {
         moveScript = GetComponent<EnemyMove>();
+
+        if(combatType == Combat.Distance)
+        {
+            shootScript = GetComponent<EnemyShoot>();
+        }
+    }
+
+    private void Update()
+    {
+        isMoving = moveScript.isMoving;
+
+        if(!isMoving)
+        {
+            shootScript.enabled = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,12 +41,6 @@ public class EnemyAttack : MonoBehaviour
         {
             //damage
         }
-    }
-
-
-    void Shoot()
-    {
-        Instantiate(bullet,transform.position,Quaternion.identity);
     }
 
 
