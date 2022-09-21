@@ -18,11 +18,15 @@ public class EnemyMove : MonoBehaviour
     public float magnitude = 1f; 
     Vector3 pos;
     Vector3 axis;
-    [Header("distance")]
+    [Header("Distance")]
     public bool keepDistance;
     public float distance;
     public bool isMoving = true;
-  
+    [Header("Avoid Obstacles")]  
+    public float numberOfRays = 15;
+    public float angle = 90;
+    public float rayRange = 2;
+
     
     void Start()
     {
@@ -31,7 +35,10 @@ public class EnemyMove : MonoBehaviour
         pos = transform.position;
         frequency += Random.Range(2, 5);
         speed += Random.Range(1, 3); ;
-        distance += Random.Range(1, 5);
+        if(GetComponent<EnemyAttack>().combatType == Combat.Distance)
+        {
+            distance += Random.Range(1, 5);
+        }
     }
 
     // Update is called once per frame
@@ -92,10 +99,6 @@ public class EnemyMove : MonoBehaviour
         //pos += transform.forward * Time.deltaTime * speed;
         rb.MovePosition((pos += transform.forward * Time.deltaTime * speed) + axis * Mathf.Sin(Time.time * frequency) * magnitude);
     }
-
-    public float numberOfRays = 15;
-    public float angle = 90;
-    public float rayRange = 2;
 
     void AvoidCol()
     {

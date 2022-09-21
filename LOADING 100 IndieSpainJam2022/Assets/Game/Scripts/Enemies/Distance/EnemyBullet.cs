@@ -33,7 +33,7 @@ public class EnemyBullet : MonoBehaviour
 
     IEnumerator lostBullet()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         RecycleBullet();
     }
     void RecycleBullet()

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum Combat {Meele, Distance, Area }
 
 public class EnemyAttack : MonoBehaviour
 {
-    public enum Combat {Meele, Distance, bomb }
     public Combat combatType = Combat.Meele;
 
     public EnemyMove moveScript;
@@ -13,7 +13,10 @@ public class EnemyAttack : MonoBehaviour
 
     [Header("Shooting")]
     public EnemyShoot shootScript;
-    bool isMoving;
+    public bool isMoving;
+
+    [Header("Area")]
+    public AreaAttack areaScript;
 
     private void Awake()
     {
@@ -22,6 +25,10 @@ public class EnemyAttack : MonoBehaviour
         if(combatType == Combat.Distance)
         {
             shootScript = GetComponent<EnemyShoot>();
+        }
+        else if(combatType == Combat.Area)
+        {
+            areaScript = GetComponent<AreaAttack>();
         }
     }
 
@@ -32,6 +39,11 @@ public class EnemyAttack : MonoBehaviour
             isMoving = moveScript.isMoving;
             shootScript.enabled = !isMoving;       
         }
+        else if(combatType == Combat.Area)
+        {
+            isMoving = moveScript.isMoving;
+            areaScript.enabled = !isMoving;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,6 +53,8 @@ public class EnemyAttack : MonoBehaviour
             //damage
         }
     }
+
+
 
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletPool : MonoBehaviour
 {
     [Header("Pool")]  
-    int bulletPoolSize = 10;
+    int bulletPoolSize = 5;
     [SerializeField]
     GameObject proyectile;
     [SerializeField]
