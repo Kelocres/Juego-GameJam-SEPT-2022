@@ -13,6 +13,7 @@ public class MoveController : MonoBehaviour
     //--moverlo--//
     private int MascaraSuelo;
     private float camRayLongitud = 1000f;
+    private Vector3 posCamara;
 
     public void Configure(GameObject gobj) {
         _rb = gobj.GetComponent<Rigidbody>();
@@ -51,6 +52,7 @@ public class MoveController : MonoBehaviour
             _rb.MoveRotation(nuevaRotacion);
 
         }
+        posCamara = camforMouse.transform.position;
         
     }
     public void Move(float x,float z,float speed,float smoothTime)
@@ -60,7 +62,9 @@ public class MoveController : MonoBehaviour
     }
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(hitFloor.point, 1);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawSphere(hitFloor.point, 1);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(posCamara, hitFloor.point);
     }
 }

@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc7978a06374b4db8bb8fde0003503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camforMouse: {fileID: 647809598}
+  camforMouse: {fileID: 1067250716}
   objective: {fileID: 1067250717}
   smoothing: 5
 --- !u!4 &808385531
@@ -738,7 +738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837990640}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -2.83, z: 0}
+  m_LocalPosition: {x: 0, y: -0.19, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
