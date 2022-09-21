@@ -1015,10 +1015,10 @@ MonoBehaviour:
   mapUnitRotation: {x: 0, y: 0, z: 0}
   mapUnit: {fileID: 4868560513411054302, guid: 0953b9da441369a498b19f2915f5ba31, type: 3}
   mapCenter: {fileID: 692025969594723806, guid: 84428b9a3163d3a439e425078a40328d, type: 3}
-  mapHeight: 20
-  mapWidth: 20
-  initialPositionX: 10
-  initialPositionY: 10
+  mapHeight: 100
+  mapWidth: 100
+  initialPositionX: 50
+  initialPositionY: 50
 --- !u!4 &2041511850
 Transform:
   m_ObjectHideFlags: 0

@@ -58,7 +58,8 @@ public class MapGenerationScript : MonoBehaviour
                 matrixMap[x, y] = 1;
                 //CreateMapUnit(x, y);
             }
-        Instantiate(mapCenter, new Vector3(initialPositionX - 1, 0, initialPositionY - 1), Quaternion.Euler(mapUnitRotation));
+        //Instantiate(mapCenter, new Vector3(initialPositionX, 0, initialPositionY), Quaternion.Euler(mapUnitRotation));
+        Instantiate(mapCenter, new Vector3(0, 0, 0), Quaternion.Euler(mapUnitRotation));
 
     }
 
@@ -230,6 +231,7 @@ public class MapGenerationScript : MonoBehaviour
 
         float x = (posX - initialPositionX) * mapUnitMeasures * 2;
         float z = (posY - initialPositionY) * mapUnitMeasures * 2;
+
         Instantiate(mapUnit, new Vector3(x, 0, z), Quaternion.Euler(mapUnitRotation));
     }
 }
