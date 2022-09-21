@@ -5,8 +5,10 @@ using UnityEngine;
 public class MapGenerationScript : MonoBehaviour
 {
     private int[,] matrixMap;
-    private Vector3 mapUnitMeasures;
+    public float mapUnitMeasures = 8f;
+    public Vector3 mapUnitRotation = new Vector3(-90, 0, 0);
     public GameObject mapUnit;
+    public GameObject mapCenter;
 
     //Initial matrix: 20x20
     public int mapHeight = 100;
@@ -38,10 +40,10 @@ public class MapGenerationScript : MonoBehaviour
         Debug.Log("Default matrix value: " + matrixMap[initialPositionX, initialPositionY]);
 
         // Get measures from unitMapMeasures
-        if (mapUnit != null)
+        if (mapCenter != null)
         {
-            mapUnitMeasures = new Vector3(8, 8, 8);
-            Debug.Log("Measures: x=" + mapUnitMeasures.x + ", y=" + mapUnitMeasures.y + ", z=" + mapUnitMeasures.z);
+            
+            //Debug.Log("Measures: =" + mapUnitMeasures + ", y=" + mapUnitMeasures + ", z=" + mapUnitMeasures);
 
             FirstMapUnits();
         }
@@ -49,12 +51,15 @@ public class MapGenerationScript : MonoBehaviour
 
     private void FirstMapUnits()
     {
+
         for (int x = initialPositionX - 1; x <= initialPositionX + 1; x++)
             for (int y = initialPositionY - 1; y <= initialPositionY + 1; y++)
             {
-                //matrixMap[x, y] = 1;
-                CreateMapUnit(x, y);
+                matrixMap[x, y] = 1;
+                //CreateMapUnit(x, y);
             }
+        Instantiate(mapCenter, new Vector3(initialPositionX - 1, 0, initialPositionY - 1), Quaternion.Euler(mapUnitRotation));
+
     }
 
     public void StartExpandMap(int numUnits)
@@ -223,9 +228,9 @@ public class MapGenerationScript : MonoBehaviour
         Debug.Log("CreateMapUnit() crear en posX=" + posX + ", posY=" + posY);
         matrixMap[posX, posY] = 1;
 
-        float x = (posX - initialPositionX) * mapUnitMeasures.x * 2;
-        float z = (posY - initialPositionY) * mapUnitMeasures.z * 2;
-        Instantiate(mapUnit, new Vector3(x, 0, z), Quaternion.Euler(new Vector3(-90, 0, 0)));
+        float x = (posX - initialPositionX) * mapUnitMeasures * 2;
+        float z = (posY - initialPositionY) * mapUnitMeasures * 2;
+        Instantiate(mapUnit, new Vector3(x, 0, z), Quaternion.Euler(mapUnitRotation));
     }
 }
 
