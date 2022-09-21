@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &42843750
 Transform:
   m_ObjectHideFlags: 0
@@ -181,6 +181,7 @@ MonoBehaviour:
   enemiesPrefabs:
   - {fileID: 2988417539098680142, guid: 1a2d479cb4ced1a4f9cc4656cc2336d4, type: 3}
   - {fileID: 1220240293837224356, guid: 011934e415eb3104496c6c0e42fd1462, type: 3}
+  - {fileID: 3048646066846305980, guid: 780a079ddecde1c468117e08ab8d9306, type: 3}
   roundSize: 4
 --- !u!1 &473947513
 GameObject:
