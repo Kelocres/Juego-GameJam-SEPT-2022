@@ -7,15 +7,15 @@ public class EnemyAttack : MonoBehaviour
     public enum Combat {Meele, Distance, bomb }
     public Combat combatType = Combat.Meele;
 
-    EnemyMove moveScript;
+    public EnemyMove moveScript;
     [Header("Meele")]
     public float damage;
 
     [Header("Shooting")]
-    EnemyShoot shootScript;
+    public EnemyShoot shootScript;
     bool isMoving;
 
-    private void Start()
+    private void Awake()
     {
         moveScript = GetComponent<EnemyMove>();
 
@@ -27,10 +27,11 @@ public class EnemyAttack : MonoBehaviour
 
     private void Update()
     {
-        isMoving = moveScript.isMoving;
-
-        shootScript.enabled = !isMoving;       
-
+        if(combatType == Combat.Distance)
+        {
+            isMoving = moveScript.isMoving;
+            shootScript.enabled = !isMoving;       
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
