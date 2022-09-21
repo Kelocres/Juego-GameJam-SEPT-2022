@@ -18,12 +18,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CanMove();
-    
+        CanLook();
+
     }
     private void FixedUpdate()
     {
-        CanLook();
+        CanMove();
+       
     }
     public void CanMove()
     {     
@@ -33,4 +34,5 @@ public class Player : MonoBehaviour
     {
         mediator.CanLook(mouseSensitivity);
     }
+    
 }

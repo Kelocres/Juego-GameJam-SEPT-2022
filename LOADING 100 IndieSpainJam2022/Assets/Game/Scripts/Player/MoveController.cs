@@ -9,7 +9,7 @@ public class MoveController : MonoBehaviour
     private Vector3 smoothMoveVelocity = Vector3.zero;
     private Rigidbody _rb;
     private Transform _transform;
-    
+    RaycastHit hitFloor;
     //--moverlo--//
     private int MascaraSuelo;
     private float camRayLongitud = 1000f;
@@ -27,36 +27,40 @@ public class MoveController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
         _rb.MovePosition(_rb.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-        
+
+
     }
     public void Look(Camera camforMouse,float mouseSensitivity, float getAxisMousex)
     {
-
-        Ray camaraRay = camforMouse.ScreenPointToRay(Input.mousePosition);
+        Debug.Log(Input.mousePosition);
+        Ray camRay = camforMouse.ScreenPointToRay(Input.mousePosition);
        
-        RaycastHit hitSuelo;
+        //RaycastHit hitFloor;
 
-        //Función Raycast devuelve true si el Ray detecta algo
-        //Physics.Raycast(Ray que detectará o no, RaycastHit que informa, longitud del ray, mascara del suelo donde queremos detectar)    
-        //HitSuelo es aquí out para almacenar información en la variable fuera de la función
-
-        if (Physics.Raycast(camaraRay, out hitSuelo, camRayLongitud, MascaraSuelo))
+        
+        if (Physics.Raycast(camRay, out hitFloor, camRayLongitud, MascaraSuelo))
         {
        
-            Vector3 jugador_a_raton = hitSuelo.point - _transform.position;
-            jugador_a_raton.y = 0f;
-
-             Quaternion nuevaRotacion = Quaternion.LookRotation(jugador_a_raton);
-            Debug.Log(nuevaRotacion.eulerAngles);
+            Vector3 playerPointToMouse = hitFloor.point - _transform.position;
+            
+            playerPointToMouse.y = 0f;
+            
+            Quaternion nuevaRotacion = Quaternion.LookRotation(playerPointToMouse);
+            
             _rb.MoveRotation(nuevaRotacion);
 
         }
+        
     }
     public void Move(float x,float z,float speed,float smoothTime)
     {
         Vector3 moveDir = new Vector3(x,0,z).normalized;
-        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);            
+        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(hitFloor.point, 1);
     }
 }
