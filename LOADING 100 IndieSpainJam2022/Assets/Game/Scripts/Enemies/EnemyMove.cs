@@ -9,6 +9,7 @@ public class EnemyMove : MonoBehaviour
 
     public MoveType moveType = MoveType.Towards;
     public float speed;
+    Rigidbody rb;
     Transform player;
     [Header("Towards")]
     public float height;
@@ -26,7 +27,11 @@ public class EnemyMove : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody>();
         pos = transform.position;
+        frequency += Random.Range(2, 5);
+        speed += Random.Range(1, 3); ;
+        distance += Random.Range(1, 5);
     }
 
     // Update is called once per frame
@@ -34,7 +39,7 @@ public class EnemyMove : MonoBehaviour
     {
         transform.LookAt(player);
         axis = transform.right;
-
+        AvoidCol();
         if(keepDistance)
         {
             KeepDistance();
@@ -49,11 +54,13 @@ public class EnemyMove : MonoBehaviour
     {
         if(Vector3.Distance(transform.position,player.position)>distance)
         {
+            rb.isKinematic = false;
             Move();
             isMoving = true;
         }
         else
         {
+            rb.isKinematic = true;
             isMoving = false;
         }
     }
@@ -75,14 +82,48 @@ public class EnemyMove : MonoBehaviour
 
     void MoveToward()
     {
-        transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,height,transform.position.z)
-            , new Vector3(player.position.x, height, player.position.z), speed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(new Vector3(transform.position.x,height,transform.position.z)
+        //    , new Vector3(player.position.x, height, player.position.z), speed * Time.deltaTime);
+        rb.MovePosition(rb.position + transform.forward * speed * Time.deltaTime);
     }
 
     void MoveZigZag()
     {
-        pos += transform.forward * Time.deltaTime * speed;
-        transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
+        //pos += transform.forward * Time.deltaTime * speed;
+        rb.MovePosition((pos += transform.forward * Time.deltaTime * speed) + axis * Mathf.Sin(Time.time * frequency) * magnitude);
+    }
+
+    public float numberOfRays = 15;
+    public float angle = 90;
+    public float rayRange = 2;
+
+    void AvoidCol()
+    {
+        for (int i = 0; i < numberOfRays; i++)
+        {
+            var rotation = this.transform.rotation;
+            var rotationMod = Quaternion.AngleAxis(i / numberOfRays * angle * 2 - angle, transform.up);
+            var direction = rotation * rotationMod * Vector3.forward;
+            var ray = new Ray(transform.position, direction);
+            RaycastHit hitInfo;
+            if(Physics.Raycast(ray,out hitInfo, rayRange))
+            {
+                pos -= 1/numberOfRays * direction;
+            }
+
+          
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        for (int i = 0; i < numberOfRays; i++)
+        {
+            var rotation = this.transform.rotation;
+            var rotationMod = Quaternion.AngleAxis(i /numberOfRays * angle * 2 - angle, transform.up);
+            var direction = rotation * rotationMod * Vector3.forward;
+            Gizmos.DrawRay(transform.position, direction);
+        }
     }
 
 

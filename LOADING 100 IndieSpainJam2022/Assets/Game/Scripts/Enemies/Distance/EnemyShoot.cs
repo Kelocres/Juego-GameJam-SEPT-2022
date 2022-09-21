@@ -18,6 +18,7 @@ public class EnemyShoot : MonoBehaviour
 
     IEnumerator Shooting()
     {
+        yield return new WaitForSeconds(0.5f);
         GetComponent<BulletPool>().ShootBullet();
         yield return new WaitForSeconds(timeBtwShoots);
         StartCoroutine(Shooting());
