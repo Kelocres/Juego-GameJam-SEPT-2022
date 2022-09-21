@@ -21,22 +21,24 @@ public class MapGenerationScript : MonoBehaviour
     //In order to expand the map in an interesting way, we should find positions for new routes
     //These positions will be selected according of how many of their neighbour cells have unitMaps
     //To do this research, we will use Graph Research Algorithm
-    private int[,] matrixResearch; //Values: 0-> not checked, 1-> Waiting for being checked, 2-> Checked
-    private int[] arrayDesirableValues = { 1, 2, 3, 4, 5, 6, 7 };
-    private int desiredValue;
+    //private int[,] matrixResearch; //Values: 0-> not checked, 1-> Waiting for being checked, 2-> Checked
+    //private int[] arrayDesirableValues = { 1, 2, 3, 4, 5, 6, 7 };
+    //private int desiredValue;
     private List<MatrixPosition> desirablePositions = new List<MatrixPosition>();
     private MatrixPosition[] routeOrientations = { new MatrixPosition(1, 0), new MatrixPosition(-1, 0), new MatrixPosition(0, 1), new MatrixPosition(0, -1) };
 
     //Para que la corutina ExpandMap se mantenga latente 
     private MatrixPosition origin;
 
-
+    //Cola para los suelos que se deban evaluar
+    private Queue<MatrixPosition> queueEvaluables;
 
 
     void Start()
     {
         // Initialize map matrix
         matrixMap = new int[mapHeight, mapWidth];
+        queueEvaluables = new Queue<MatrixPosition>();
         Debug.Log("Default matrix value: " + matrixMap[initialPositionX, initialPositionY]);
 
         // Get measures from unitMapMeasures
@@ -56,27 +58,60 @@ public class MapGenerationScript : MonoBehaviour
             for (int y = initialPositionY - 1; y <= initialPositionY + 1; y++)
             {
                 matrixMap[x, y] = 1;
+                queueEvaluables.Enqueue(new MatrixPosition(x, y));
                 //CreateMapUnit(x, y);
             }
         //Instantiate(mapCenter, new Vector3(initialPositionX, 0, initialPositionY), Quaternion.Euler(mapUnitRotation));
         Instantiate(mapCenter, new Vector3(0, 0, 0), Quaternion.Euler(mapUnitRotation));
+        StartCoroutine(EvaluatePositions());
 
+    }
+
+    private IEnumerator EvaluatePositions()
+    {
+        MatrixPosition posEval;
+        MatrixPosition direction;
+        while (queueEvaluables.Count > 0)
+        {
+            posEval = queueEvaluables.Peek();
+            queueEvaluables.Dequeue();
+
+            for (int i = 0; i < routeOrientations.Length; i++)
+            {
+                direction = routeOrientations[i];
+                if (matrixMap[posEval.x + direction.x, posEval.y + direction.y] == 0)
+                {
+                    desirablePositions.Add(posEval);
+                    break;
+                }
+                else
+                    yield return null;
+
+            }
+
+            yield return null;
+        }
     }
 
     public void StartExpandMap(int numUnits)
     {
-        int desiredValue = arrayDesirableValues[Random.Range(0, arrayDesirableValues.Length)];
-        StartCoroutine(SearchNewRouteOrigin(desiredValue));
-        StartCoroutine(WaitingForOrigin(numUnits));
+        //int desiredValue = arrayDesirableValues[Random.Range(0, arrayDesirableValues.Length)];
+        //StartCoroutine(SearchNewRouteOrigin(desiredValue));
+        //StartCoroutine(WaitingForOrigin(numUnits));
+        int index = Random.Range(0, desirablePositions.Count);
+        origin = desirablePositions[index];
+        desirablePositions.RemoveAt(index);
+
+        StartCoroutine(ExpandMap(numUnits));
     }
 
-    private IEnumerator WaitingForOrigin(int numUnits)
+    /*private IEnumerator WaitingForOrigin(int numUnits)
     {
         while (origin == null)
             yield return null;
 
         StartCoroutine(ExpandMap(numUnits));
-    }
+    }*/
 
     private IEnumerator ExpandMap(int numUnits)
     {
@@ -132,6 +167,8 @@ public class MapGenerationScript : MonoBehaviour
             {
                 Debug.Log("ExpandMap() NewPos x=" + newPos.x + ", y=" + newPos.y + " está vacío y se va a construir aquí");
                 CreateMapUnit(newPos.x, newPos.y);
+                //Añadir nuevo suelo a la cola de evaluables
+                queueEvaluables.Enqueue(newPos);
                 yield return null;
             }
             else
@@ -142,8 +179,12 @@ public class MapGenerationScript : MonoBehaviour
                 yield return null;
             }
         }
-    }
 
+        //Añadir origin a cola de evaluables, y proceder a evaluar
+        queueEvaluables.Enqueue(origin);
+        StartCoroutine(EvaluatePositions());
+    }
+    /*
     public IEnumerator SearchNewRouteOrigin(int desiredValue)
     {
         Debug.Log("SearchNewRouteOrigin() con desiredValue = " + desiredValue);
@@ -172,7 +213,7 @@ public class MapGenerationScript : MonoBehaviour
 
             int countingNeighbours = 0;
 
-            /*for (int x = posActual.x - 1; x <= posActual.x + 1; x++)
+            for (int x = posActual.x - 1; x <= posActual.x + 1; x++)
                 for (int y = posActual.y - 1; y <= posActual.y + 1; y++)
                 {
                     if(x>=0 && x < mapHeight && y >= 0 && y<mapWidth)
@@ -180,7 +221,7 @@ public class MapGenerationScript : MonoBehaviour
                         {
 
                         }
-                }*/
+                }
             Debug.Log("SearchNewRouteOrigin() For loop para registrar vecinos de la posicion");
             for (int i = 0; i < routeOrientations.Length; i++)
             {
@@ -222,7 +263,7 @@ public class MapGenerationScript : MonoBehaviour
             origin = resultPosition;
             //yield return resultPosition;
         }
-    }
+    }*/
 
     private void CreateMapUnit(int posX, int posY)
     {
