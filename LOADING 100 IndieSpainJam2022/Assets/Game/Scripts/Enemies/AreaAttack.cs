@@ -8,19 +8,18 @@ public class AreaAttack : MonoBehaviour
     public int damage;
     public float delay = 3;
     EnemyMove moveScript;
-    public Bomb bombScript;
+    public ParticleSystem explosion;
 
     private void OnEnable()
     {
         moveScript = GetComponent<EnemyMove>();
-        bombScript.damage = damage;
-        StartCoroutine(Countdown());
+        StartCoroutine(Countdown());       
     }
 
     void Explode()
     {
         bomb.SetActive(true);
-
+        explosion.Play();
     }
 
     IEnumerator Countdown()
@@ -28,9 +27,10 @@ public class AreaAttack : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         moveScript.enabled = false;
         yield return new WaitForSeconds(delay);
-        Explode();
+        Explode();    
         yield return new WaitForSeconds(0.5f);
         bomb.SetActive(false);
+        yield return new WaitForSeconds(1f);
         moveScript.enabled = true;
         enabled = false;
     }

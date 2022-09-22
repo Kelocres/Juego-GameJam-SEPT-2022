@@ -26,17 +26,17 @@ public class GameManager : MonoBehaviour
     }
     public void FillBar(int points)
     {
-        loadingBar++;
-        mapScript.StartExpandMap(points);
+        loadingBar += points;
+        mapScript.StartExpandMap(1);
     }
 
     public void EmptyBar(int points)
     {
         if(loadingBar > 10)
         {
-            mapScript.StartDestroyMap(points);
+            mapScript.StartDestroyMap(1);
         }
-        loadingBar--;
+        loadingBar -= points;
     }
 
     public void UpdateLoading()
