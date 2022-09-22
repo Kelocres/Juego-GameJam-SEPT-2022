@@ -6,8 +6,8 @@ public class CameraController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]Camera camforMouse;
-    [SerializeField]Transform objective;
-    public float smoothing = 5f;
+    //[SerializeField]Transform objective;
+    //public float smoothing = 5f;
 
     Vector3 offset;
 

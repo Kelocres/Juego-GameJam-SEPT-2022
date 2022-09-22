@@ -32,9 +32,9 @@ public class MoveController : MonoBehaviour
 
 
     }
-    public void Look(Camera camforMouse,float mouseSensitivity, float getAxisMousex)
+    public void Look(Camera camforMouse)
     {
-        Debug.Log(Input.mousePosition);
+        //Debug.Log(Input.mousePosition);
         Ray camRay = camforMouse.ScreenPointToRay(Input.mousePosition);
        
         //RaycastHit hitFloor;

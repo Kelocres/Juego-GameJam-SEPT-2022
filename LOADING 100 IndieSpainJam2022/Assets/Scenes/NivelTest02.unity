@@ -774,9 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fc7978a06374b4db8bb8fde0003503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camforMouse: {fileID: 647809598}
-  objective: {fileID: 1067250717}
-  smoothing: 5
+  camforMouse: {fileID: 1067250716}
 --- !u!4 &808385531
 Transform:
   m_ObjectHideFlags: 0
