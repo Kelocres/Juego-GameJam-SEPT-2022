@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float  sprintSpeed, walkSpeed, smoothTime, mouseSensitivity;
     [SerializeField] private PlayerMediator mediator;
+
+    public Animator anim;
     
     void Start()
     {
