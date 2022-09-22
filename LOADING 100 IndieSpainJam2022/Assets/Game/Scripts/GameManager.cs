@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int loadingBar = 5;
     MapGenerationScript mapScript;
     public TextMeshProUGUI loadingText;
-    public RawImage bar_loading;
+    
 
     private void Awake()
     {
@@ -30,8 +30,8 @@ public class GameManager : MonoBehaviour
     {
         loadingBar += points;
         Debug.Log("FillBar() loadingBar = " + loadingBar);
-        Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
-        bar_loading.rectTransform.localScale = scalame;
+        //Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
+        //bar_loading.rectTransform.localScale = scalame;
         mapScript.StartExpandMap(1);
     }
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     public void UpdateLoading()
     {
         loadingText.text = "Loading..." + loadingBar.ToString() + "%";
-        Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
-        bar_loading.rectTransform.localScale = scalame;
+        //Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
+        //bar_loading.rectTransform.localScale = scalame;
     }
 }

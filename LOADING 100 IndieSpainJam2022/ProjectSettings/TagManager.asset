@@ -9,6 +9,9 @@ TagManager:
   - bar_powerWhite
   - bar_powerRed
   - bar_powerBlue
+  - counter_powerWhite
+  - counter_powerRed
+  - counter_powerBlue
   layers:
   - Default
   - TransparentFX
