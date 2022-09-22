@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class PlayerMediator : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] MoveController movecontroller;
     [SerializeField] CameraController cameracontroller;
- 
+    [SerializeField] AnimationController animationcontroller;
     void Start()
     {
         
@@ -32,7 +33,7 @@ public class PlayerMediator : MonoBehaviour
         float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
-        
-        movecontroller.Move(x,z,speed,smoothTime);
+        movecontroller.Move(x, z, speed, smoothTime);
+        animationcontroller.moveAnim();         
     }
 }

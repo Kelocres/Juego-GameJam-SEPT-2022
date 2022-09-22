@@ -7,18 +7,23 @@ public class MoveController : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 moveAmount;
     private Vector3 smoothMoveVelocity = Vector3.zero;
-    private Rigidbody _rb;
+    private GameObject _gameObject;
+    private Rigidbody _rigidbody;
     private Transform _transform;
     RaycastHit hitFloor;
     //--moverlo--//
     private int MascaraSuelo;
     private float camRayLongitud = 1000f;
     private Vector3 posCamara;
-
-    public void Configure(GameObject gobj) {
-        _rb = gobj.GetComponent<Rigidbody>();
-        _transform = gobj.transform;
+    private void Start()
+    {
         MascaraSuelo = LayerMask.GetMask("Floor");
+    }
+    public void Configure(GameObject gobj) {
+        _gameObject=gobj;
+        _rigidbody = gobj.GetComponent<Rigidbody>();
+        _transform = gobj.transform;
+       
     }
 
     // Update is called once per frame
@@ -28,17 +33,16 @@ public class MoveController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rb.MovePosition(_rb.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
-
+         
+        _rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+  
 
     }
     public void Look(Camera camforMouse)
     {
         //Debug.Log(Input.mousePosition);
         Ray camRay = camforMouse.ScreenPointToRay(Input.mousePosition);
-       
-        //RaycastHit hitFloor;
-
+ 
         
         if (Physics.Raycast(camRay, out hitFloor, camRayLongitud, MascaraSuelo))
         {
@@ -49,7 +53,7 @@ public class MoveController : MonoBehaviour
             
             Quaternion nuevaRotacion = Quaternion.LookRotation(playerPointToMouse);
             
-            _rb.MoveRotation(nuevaRotacion);
+            _rigidbody.MoveRotation(nuevaRotacion);
 
         }
         posCamara = camforMouse.transform.position;

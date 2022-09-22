@@ -9,12 +9,15 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerMediator mediator;
 
     public Animator anim;
-    
+    private void Awake()
+    {
+ 
+        
+    }
     void Start()
     {
-        var gobj = gameObject.gameObject;
-        mediator.Configure(gobj);
          
+        mediator.Configure(gameObject.gameObject);
     }
 
     // Update is called once per frame
