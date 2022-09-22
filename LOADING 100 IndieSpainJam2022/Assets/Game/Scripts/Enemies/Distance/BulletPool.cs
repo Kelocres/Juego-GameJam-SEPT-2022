@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
+    public int damage;
     [Header("Pool")]  
     int bulletPoolSize = 5;
     [SerializeField]
@@ -40,6 +41,7 @@ public class BulletPool : MonoBehaviour
             shootNumber = 0;
         }
         bullets[shootNumber].transform.position = canon.position;
+        bullets[shootNumber].GetComponent<EnemyBullet>().damage = damage;
         bullets[shootNumber].transform.rotation = gameObject.transform.rotation;
         bullets[shootNumber].SetActive(true);
     }

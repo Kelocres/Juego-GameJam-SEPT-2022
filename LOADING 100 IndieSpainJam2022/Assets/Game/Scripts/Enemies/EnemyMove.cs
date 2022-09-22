@@ -11,8 +11,6 @@ public class EnemyMove : MonoBehaviour
     public float speed;
     Rigidbody rb;
     Transform player;
-    [Header("Towards")]
-    public float height;
     [Header("ZigZag")]
     public float frequency = 10.0f; 
     public float magnitude = 1f; 

@@ -5,12 +5,15 @@ using UnityEngine;
 public class AreaAttack : MonoBehaviour
 {
     public GameObject bomb;
+    public int damage;
     public float delay = 3;
     EnemyMove moveScript;
+    public Bomb bombScript;
 
     private void OnEnable()
     {
         moveScript = GetComponent<EnemyMove>();
+        bombScript.damage = damage;
         StartCoroutine(Countdown());
     }
 

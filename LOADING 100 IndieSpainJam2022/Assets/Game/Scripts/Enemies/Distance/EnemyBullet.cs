@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField]
-    float velocity = 5f;
+    float velocity = 5f;   
+    public int damage;
 
     private void OnEnable()
     {
@@ -23,7 +24,8 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             RecycleBullet();
-            //damage player
+            GameManager.instance.EmptyBar(damage);
+            GameManager.instance.UpdateLoading();
         }
         else
         {

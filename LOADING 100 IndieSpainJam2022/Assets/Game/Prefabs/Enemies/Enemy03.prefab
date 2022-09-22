@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 231384084069457209}
   - component: {fileID: 231384084069457215}
   - component: {fileID: 231384084069457211}
+  - component: {fileID: 4308967339581324078}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -97,6 +98,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4308967339581324078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231384084069457214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96ad792a53c0b5409eb4a46a7068411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &3048646066846305980
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,10 +178,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatType: 2
   moveScript: {fileID: 0}
-  damage: 0
+  damage: 1
   shootScript: {fileID: 0}
   isMoving: 0
-  areaScript: {fileID: 0}
+  areaScript: {fileID: 3048646066846305924}
 --- !u!114 &3048646066846305979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: 0
   speed: 5
-  height: 1.5
   frequency: 10
   magnitude: 1.41
   keepDistance: 1
@@ -204,7 +217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 231384084069457214}
+  damage: 5
   delay: 2
+  bombScript: {fileID: 4308967339581324078}
 --- !u!65 &3048646066846305977
 BoxCollider:
   m_ObjectHideFlags: 0

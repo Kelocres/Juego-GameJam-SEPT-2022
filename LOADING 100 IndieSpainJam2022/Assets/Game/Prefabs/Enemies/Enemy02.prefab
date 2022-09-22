@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725ad898123e0ef4dbc0e1fad86f8bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 3
   health: 0
 --- !u!114 &1220240293837224380
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combatType: 1
   moveScript: {fileID: 0}
-  damage: 0
+  damage: 1
   shootScript: {fileID: 0}
   isMoving: 0
   areaScript: {fileID: 0}
@@ -86,7 +86,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: 0
   speed: 5
-  height: 1.5
   frequency: 10
   magnitude: 1.41
   keepDistance: 1
@@ -120,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f493b668d82bbda46963c8fa1ce08a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   proyectile: {fileID: 4158203574532957052, guid: 64df57082bd555a4683b4d957da46bc9, type: 3}
   shootNumber: 0
   bullets: []
