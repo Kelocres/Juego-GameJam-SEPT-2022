@@ -7,7 +7,10 @@ public class Bomb : MonoBehaviour
     public int damage;
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.instance.EmptyBar(damage);
-        GameManager.instance.UpdateLoading();
+        if(other.CompareTag("Player"))
+        {
+            GameManager.instance.EmptyBar(damage);
+            GameManager.instance.UpdateLoading();
+        }
     }
 }
