@@ -9,7 +9,7 @@ public class EnemyAttack : MonoBehaviour
 
     public EnemyMove moveScript;
     [Header("Meele")]
-    public float damage;
+    public int damage;
 
     [Header("Shooting")]
     public EnemyShoot shootScript;
@@ -50,7 +50,13 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //damage
+            GameManager.instance.FillBar(damage);
+            GameManager.instance.UpdateLoading();
+            Destroy(gameObject);
+            //if(combatType == Combat.Meele)
+            //{
+            //    Destroy(gameObject);
+            //}
         }
     }
 

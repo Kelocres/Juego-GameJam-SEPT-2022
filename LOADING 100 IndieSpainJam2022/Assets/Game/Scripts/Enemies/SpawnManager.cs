@@ -7,13 +7,35 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] spawnPoints;
     public GameObject[] enemiesPrefabs;
 
+    public int round = 0;
     public int roundSize = 3;
+    float nextRoundTime = 10f;
+
 
 
     private void Start()
     {
-        NewRound(roundSize);
+        StartCoroutine(RoundCycle());
     }
+
+
+    IEnumerator RoundCycle()
+    {
+        yield return new WaitForSeconds(nextRoundTime);
+        NewRound(roundSize);
+        UpgradeRound();
+        StartCoroutine(RoundCycle());
+    }
+
+    void UpgradeRound()
+    {
+        if(round%3 == 0)
+        {
+            roundSize++;
+            nextRoundTime -= 0.5f;
+        }
+    }
+
     GameObject GetRandomEnemy()
     {
         return enemiesPrefabs[Random.Range(0, enemiesPrefabs.Length)];
@@ -32,6 +54,8 @@ public class SpawnManager : MonoBehaviour
            return GetRandomSpawn();
         }
     }
+
+
 
     void RandomSpawn()
     {
@@ -61,6 +85,7 @@ public class SpawnManager : MonoBehaviour
             ResetSpawns();
             NewRound(size - spawnPoints.Length);
         }
+        round++;
     }
 
      void ResetSpawns()
