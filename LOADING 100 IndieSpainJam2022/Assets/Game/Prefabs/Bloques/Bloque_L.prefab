@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5606530317540174667}
   - component: {fileID: 4771016877378769372}
+  - component: {fileID: 6683996019171836448}
   m_Layer: 0
   m_Name: Bloque_L
   m_TagString: Untagged
@@ -46,6 +47,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 26, z: 10}
   m_Center: {x: 0, y: -13, z: 0}
+--- !u!114 &6683996019171836448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606530317540174664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1276ac63c0bae744fb00e81bcbde1b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitKind: floor
 --- !u!1001 &5606530315478371239
 PrefabInstance:
   m_ObjectHideFlags: 0

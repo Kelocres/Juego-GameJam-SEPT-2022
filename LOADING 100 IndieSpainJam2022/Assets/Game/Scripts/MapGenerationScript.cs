@@ -5,6 +5,7 @@ using UnityEngine;
 public class MapGenerationScript : MonoBehaviour
 {
     private int[,] matrixMap;
+    private MapUnitScript[,] matrixUnits;
     public float mapUnitMeasures = 8f;
     public Vector3 mapUnitRotation = new Vector3(-90, 0, 0);
     public GameObject mapUnit;
@@ -33,11 +34,16 @@ public class MapGenerationScript : MonoBehaviour
     //Cola para los suelos que se deban evaluar
     private Queue<MatrixPosition> queueEvaluables;
 
+    //Contador de los suelos creados, se utilizará también como indicador de vida
+    private int created;
+
 
     void Start()
     {
         // Initialize map matrix
+        created = 0;
         matrixMap = new int[mapHeight, mapWidth];
+        matrixUnits = new MapUnitScript[mapHeight, mapWidth];
         queueEvaluables = new Queue<MatrixPosition>();
         Debug.Log("Default matrix value: " + matrixMap[initialPositionX, initialPositionY]);
 
@@ -53,16 +59,28 @@ public class MapGenerationScript : MonoBehaviour
 
     private void FirstMapUnits()
     {
+        GameObject center = Instantiate(mapCenter, new Vector3(0, 0, 0), Quaternion.Euler(mapUnitRotation));
+        created = 1;
+        MapUnitScript unitCenter;
+        //if (center.GetComponent<MapUnitScript>() != null)
+        unitCenter = center.GetComponent<MapUnitScript>();
+        if (unitCenter != null)
+            unitCenter.unitKind = "center";
 
-        for (int x = initialPositionX - 1; x <= initialPositionX + 1; x++)
+            for (int x = initialPositionX - 1; x <= initialPositionX + 1; x++)
             for (int y = initialPositionY - 1; y <= initialPositionY + 1; y++)
             {
                 matrixMap[x, y] = 1;
+                if (unitCenter != null)
+                {
+                    matrixUnits[x, y] = unitCenter;
+                    Debug.Log("FirstMapUnits() La unidad x=" + x + ", y=" + y + " es " + matrixUnits[x, y].unitKind);
+                }
                 queueEvaluables.Enqueue(new MatrixPosition(x, y));
                 //CreateMapUnit(x, y);
             }
         //Instantiate(mapCenter, new Vector3(initialPositionX, 0, initialPositionY), Quaternion.Euler(mapUnitRotation));
-        Instantiate(mapCenter, new Vector3(0, 0, 0), Quaternion.Euler(mapUnitRotation));
+        
         StartCoroutine(EvaluatePositions());
 
     }
@@ -103,6 +121,25 @@ public class MapGenerationScript : MonoBehaviour
         desirablePositions.RemoveAt(index);
 
         StartCoroutine(ExpandMap(numUnits));
+        //ExpandMap(numUnits);
+    }
+
+    public void StartDestroyMap(int numUnits)
+    {
+        int index = Random.Range(0, desirablePositions.Count);
+        //El suelo central debe ser el último en destruirse
+        
+        origin = desirablePositions[index];
+
+        while(matrixUnits[origin.x, origin.y].unitKind == "center" && created > 1)
+        {
+            Debug.Log("StartDestroyMap() ha seleccionado el sueloCentral para borrarlo, pero aún quedan más suelos");
+            index = Random.Range(0, desirablePositions.Count);
+            origin = desirablePositions[index];
+        }
+        desirablePositions.RemoveAt(index);
+
+        StartCoroutine(DestroyMap(numUnits));
     }
 
     /*private IEnumerator WaitingForOrigin(int numUnits)
@@ -114,6 +151,7 @@ public class MapGenerationScript : MonoBehaviour
     }*/
 
     private IEnumerator ExpandMap(int numUnits)
+    //private void ExpandMap(int numUnits)
     {
         Debug.Log("ExpandMap() Posicion origin x=" + origin.x + ", y=" + origin.y);
         //Set origin position
@@ -150,7 +188,7 @@ public class MapGenerationScript : MonoBehaviour
         //Begin the instantiation
         int unitsCreated = 0;
         Debug.Log("ExpandMap() While loop para crear las unidades de suelo");
-        while (unitsCreated < numUnits)
+        while (unitsCreated < numUnits && numUnits < 100)
         {
             unitsCreated++;
             MatrixPosition newPos = new MatrixPosition(origin.x + direction.x * unitsCreated, origin.y + direction.y * unitsCreated);
@@ -183,6 +221,51 @@ public class MapGenerationScript : MonoBehaviour
         //Añadir origin a cola de evaluables, y proceder a evaluar
         queueEvaluables.Enqueue(origin);
         StartCoroutine(EvaluatePositions());
+    }
+
+    public IEnumerator DestroyMap(int numUnits)
+    {
+        MatrixPosition actualPos = origin;
+        while(numUnits > 0)
+        {
+            Debug.Log("DestroyMap() empezar destruccion de x=" + actualPos.x + ", y=" + actualPos.y);
+            DestroyMapUnit(origin.x, origin.y);
+            numUnits--;
+
+            //Encolar sus vecinos para evaluar
+            //El orden no entorpece el resultado, así que podemos recorrer el array de principio a fin
+            for(int i=0; i<routeOrientations.Length; i++)
+            {
+                MatrixPosition vecino = routeOrientations[i];
+                if (matrixMap[actualPos.x + vecino.x, actualPos.y + vecino.y] == 1)
+                    queueEvaluables.Enqueue(new MatrixPosition(actualPos.x + vecino.x, actualPos.y + vecino.y));
+            }
+
+            //Encontrar vecino que se pueda borrar
+            //Ahora las orientaciones se deben comprobar por orden aleatorio
+            int j = Random.Range(0, routeOrientations.Length);
+            MatrixPosition direction = routeOrientations[j];
+            while (matrixMap[actualPos.x + direction.x, actualPos.y + direction.y] != 1)
+            {
+                j++;
+                if (j >= routeOrientations.Length)
+                    j = 0;
+
+                yield return null;
+            }
+
+            actualPos = new MatrixPosition(actualPos.x + direction.x, actualPos.y + direction.y);
+            
+            //En el caso de que no se haya encontrado ningún suelo vecino, la corutina acaba aquí
+            if (matrixMap[actualPos.x, actualPos.y] != 1)
+                break;
+
+
+            yield return null;
+        }
+
+
+        //yield return null;
     }
     /*
     public IEnumerator SearchNewRouteOrigin(int desiredValue)
@@ -273,7 +356,20 @@ public class MapGenerationScript : MonoBehaviour
         float x = (posX - initialPositionX) * mapUnitMeasures * 2;
         float z = (posY - initialPositionY) * mapUnitMeasures * 2;
 
-        Instantiate(mapUnit, new Vector3(x, 0, z), Quaternion.Euler(mapUnitRotation));
+        GameObject unit = Instantiate(mapUnit, new Vector3(x, 0, z), Quaternion.Euler(mapUnitRotation));
+        created++;
+        if (unit.GetComponent<MapUnitScript>() != null)
+            matrixUnits[posX, posY] = unit.GetComponent<MapUnitScript>();
+
+    }
+
+    private void DestroyMapUnit(int posX, int posY)
+    {
+        Debug.Log("DestroyMapUnit() crear en posX=" + posX + ", posY=" + posY);
+        matrixMap[posX, posY] = 0;
+        matrixUnits[posX, posY].UnitDestruction();
+        created--;
+        matrixUnits[posX, posY] = null;
     }
 }
 
