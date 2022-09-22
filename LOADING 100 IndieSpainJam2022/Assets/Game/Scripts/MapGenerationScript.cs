@@ -93,6 +93,8 @@ public class MapGenerationScript : MonoBehaviour
         {
             posEval = queueEvaluables.Peek();
             queueEvaluables.Dequeue();
+            if (matrixMap[posEval.x, posEval.y] == 0 || matrixUnits[posEval.x, posEval.y] == null)
+                continue;
 
             for (int i = 0; i < routeOrientations.Length; i++)
             {
@@ -120,27 +122,12 @@ public class MapGenerationScript : MonoBehaviour
         origin = desirablePositions[index];
         desirablePositions.RemoveAt(index);
 
+        StopAllCoroutines();
         StartCoroutine(ExpandMap(numUnits));
         //ExpandMap(numUnits);
     }
 
-    public void StartDestroyMap(int numUnits)
-    {
-        int index = Random.Range(0, desirablePositions.Count);
-        //El suelo central debe ser el último en destruirse
-        
-        origin = desirablePositions[index];
-
-        while(matrixUnits[origin.x, origin.y].unitKind == "center" && created > 1)
-        {
-            Debug.Log("StartDestroyMap() ha seleccionado el sueloCentral para borrarlo, pero aún quedan más suelos");
-            index = Random.Range(0, desirablePositions.Count);
-            origin = desirablePositions[index];
-        }
-        desirablePositions.RemoveAt(index);
-
-        StartCoroutine(DestroyMap(numUnits));
-    }
+    
 
     /*private IEnumerator WaitingForOrigin(int numUnits)
     {
@@ -154,32 +141,21 @@ public class MapGenerationScript : MonoBehaviour
     //private void ExpandMap(int numUnits)
     {
         Debug.Log("ExpandMap() Posicion origin x=" + origin.x + ", y=" + origin.y);
-        //Set origin position
-        //int desiredValue = arrayDesirableValues[Random.Range(0, arrayDesirableValues.Length)];
-        //MatrixPosition origin = SearchNewRouteOrigin(desiredValue);
-
-        //Set orientation
-
-
-        //NOTA: con esta indicación, habrá una tendencia a crear suelos en dirección routeOrietations[0]
-        // Se deberá modificar en el futuro para asegurar la variedad
+        
         Debug.Log("ExpandMap() For loop para identificar la orientación");
-        /*for (int i = 0; i < routeOrientations.Length; i++)
-        {
-            direction = routeOrientations[i];
-            if (matrixMap[origin.x + direction.x, origin.y + direction.y] == 0)
-                break;
-            else
-                yield return null;
-
-        }*/
+       
         int i = Random.Range(0, routeOrientations.Length);
+        int counter = 30;
         MatrixPosition direction = routeOrientations[i];
         while (matrixMap[origin.x + direction.x, origin.y + direction.y] != 0)
         {
             i++;
+            counter--;
             if (i >= routeOrientations.Length)
                 i = 0;
+            if (counter <= 0)
+
+                StartExpandMap(numUnits);
 
             yield return null;
         }
@@ -221,6 +197,49 @@ public class MapGenerationScript : MonoBehaviour
         //Añadir origin a cola de evaluables, y proceder a evaluar
         queueEvaluables.Enqueue(origin);
         StartCoroutine(EvaluatePositions());
+    }
+
+    public void StartDestroyMap(int numUnits)
+    {
+        int index = Random.Range(0, desirablePositions.Count);
+        //El suelo central debe ser el último en destruirse
+
+        MatrixPosition comprobar = desirablePositions[index];
+        origin = null;
+
+        int tries = desirablePositions.Count;
+        //while(matrixUnits[origin.x, origin.y].unitKind == "center" && created > 1)
+        while (origin == null && tries > 0)
+        {
+            if (matrixUnits[comprobar.x, comprobar.y] != null)
+                Debug.Log("matrixUnits[" + comprobar.x + ", " + comprobar.y + "] != null");
+            if (matrixUnits[comprobar.x, comprobar.y].unitKind == "center")
+                Debug.Log("matrixUnits[" + comprobar.x + ", " + comprobar.y + ".unitKind = " + matrixUnits[comprobar.x, comprobar.y].unitKind);
+            if (matrixUnits[comprobar.x, comprobar.y] != null && matrixUnits[comprobar.x, comprobar.y].unitKind == "center" && created > 1)
+            {
+                Debug.Log("StartDestroyMap() ha seleccionado el sueloCentral para borrarlo, pero aún quedan " + created + " suelos");
+                Debug.Log("desirablePositions.Count = " + desirablePositions.Count);
+                //index = Random.Range(0, desirablePositions.Count);
+                index++;
+                if (index >= desirablePositions.Count) index = 0;
+                comprobar = desirablePositions[index];
+                tries--;
+            }
+            else
+            {
+
+                origin = comprobar;
+                desirablePositions.RemoveAt(index);
+
+                StartCoroutine(DestroyMap(numUnits));
+                break;
+            }
+
+
+        }
+
+
+
     }
 
     public IEnumerator DestroyMap(int numUnits)
