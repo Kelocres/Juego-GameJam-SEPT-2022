@@ -68,7 +68,7 @@ public class MoveController : MonoBehaviour
     {
         //Gizmos.color = Color.green;
         //Gizmos.DrawSphere(hitFloor.point, 1);
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.green;
         Gizmos.DrawLine(posCamara, hitFloor.point);
     }
 }
