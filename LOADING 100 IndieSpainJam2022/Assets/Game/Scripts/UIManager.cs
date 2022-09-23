@@ -32,6 +32,8 @@ public class UIManager : MonoBehaviour
     {
         //Debug.Log("UIManager Update() _gameManager.loadingBar = "+_gameManager.loadingBar);
         Vector3 scalame = new Vector3(_gameManager.loadingBar / 100f, 1f, 1f);
+        if (scalame.x < 0f) scalame.x = 0f;
+        else if (scalame.x > 1f) scalame.x = 1f;
         bar_loading.rectTransform.localScale = scalame;
     }
 }
