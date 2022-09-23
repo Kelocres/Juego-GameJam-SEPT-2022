@@ -7,7 +7,7 @@ public class AnimationController : MonoBehaviour
     [SerializeField]
     private Animator animator;
     private float acceleration=2.0f;
-    private float deceleration = 2.0f;
+    private float deceleration = 4.0f;
     private float maxWV = 0.5f;
     private float maxRV=2.0f;
     private float velocityZ;
@@ -124,14 +124,10 @@ public class AnimationController : MonoBehaviour
         if (!isrightP && velocityX > 0.0f)
             velocityX -= Time.deltaTime * deceleration;
         
-        if (!isforwP && velocityZ > 0.0f )
-            velocityZ = 0;
-        if (!isleftP && velocityX < 0.0f)
-            velocityX = 0;
-        /*if (!isrightP && velocityZ > 0.0f)
-            velocityZ = 0;
-        
-        if (!isbackP && velocityX < 0.0f)
-            velocityX = 0;*/
+       if(!isrightP && !isleftP && velocityX !=0 && (velocityX>-0.08f && velocityX < 0.08f))
+            velocityX = 0.0f;
+        if (!isforwP && !isbackP && velocityZ != 0 && (velocityZ > -0.08f && velocityZ < 0.08f))
+            velocityZ = 0.0f;
     }
+
 }
