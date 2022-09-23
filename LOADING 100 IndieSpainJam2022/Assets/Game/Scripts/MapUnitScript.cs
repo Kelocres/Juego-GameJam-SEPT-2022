@@ -4,19 +4,68 @@ using UnityEngine;
 
 public class MapUnitScript : MonoBehaviour
 {
-    public string unitKind = "floor";   //Puede ser floor, wall o center
+    public string unitKind = "floor";   //Puede ser floor o center
     public GameObject[] walls;
+    
+    
+    private bool parked;
+    private bool received_heights = false;
+    //private float initialHeight;
+    //private float finalHeight;
+    private Vector3 initialPosition;
+    private Vector3 finalPosition;
+    private float desiredDuration = 1f;
+    private float elapsedTime;
+
+    [SerializeField]
+    private AnimationCurve curve;
+    
     
     void Start()
     {
-        GetWalls();
-        ShowOrHideWalls();
+
+        parked = false;
+        //received_heights = false;
+        if (unitKind == "floor")
+        {
+            GetWalls();
+            ShowOrHideWalls();
+        }
+    }
+
+    public void SetHeightsForMovement(float _finalHeight)
+    {
+        received_heights = true;
+        //if (received_heights) Debug.Log("MapUnitScript Update() " + unitKind + " receibed_heights = true");
+        //finalHeight = _finalHeight;
+        //initialHeight = transform.position.y;
+        initialPosition = transform.position;
+        finalPosition = new Vector3(transform.position.x, 
+            _finalHeight, transform.position.z);
+        
+        Debug.Log("MapUnitScript SetHeightsForMovement() hecho");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log(" ");
+        if (unitKind == "floor")
+        {
+            //if (!parked) Debug.Log("MapUnitScript Update() " + unitKind + " parked = false");
+            //if (received_heights) Debug.Log("MapUnitScript Update() " + unitKind + "receibed_heights = true");
+            if (!parked && received_heights)
+            {
+                Debug.Log("MapUnitScript Ascensión");
+                elapsedTime += Time.deltaTime;
+                float percentageComplete = elapsedTime / desiredDuration;
+
+                transform.position = Vector3.Lerp(initialPosition, finalPosition,
+                    curve.Evaluate(percentageComplete));
+
+                if (elapsedTime >= desiredDuration) parked = true;
+            }
+        }
     }
 
     public void GetWalls()

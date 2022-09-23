@@ -19,12 +19,6 @@ public class MapGenerationScript : MonoBehaviour
     public int initialPositionX = 50;
     public int initialPositionY = 50;
 
-    //In order to expand the map in an interesting way, we should find positions for new routes
-    //These positions will be selected according of how many of their neighbour cells have unitMaps
-    //To do this research, we will use Graph Research Algorithm
-    //private int[,] matrixResearch; //Values: 0-> not checked, 1-> Waiting for being checked, 2-> Checked
-    //private int[] arrayDesirableValues = { 1, 2, 3, 4, 5, 6, 7 };
-    //private int desiredValue;
     private List<MatrixPosition> desirablePositions = new List<MatrixPosition>();
     private MatrixPosition[] routeOrientations = { new MatrixPosition(1, 0), new MatrixPosition(-1, 0), new MatrixPosition(0, 1), new MatrixPosition(0, -1) };
 
@@ -37,6 +31,12 @@ public class MapGenerationScript : MonoBehaviour
     //Contador de los suelos creados, se utilizará también como indicador de vida
     private int created;
 
+    //Alturas iniciales y finales de los suelos
+    public Transform trans_initialHeight;
+    public Transform trans_finalHeight;
+    private float initialHeight;
+    private float finalHeight;
+
 
     void Start()
     {
@@ -46,6 +46,9 @@ public class MapGenerationScript : MonoBehaviour
         matrixUnits = new MapUnitScript[mapHeight, mapWidth];
         queueEvaluables = new Queue<MatrixPosition>();
         Debug.Log("Default matrix value: " + matrixMap[initialPositionX, initialPositionY]);
+
+        initialHeight = trans_initialHeight.position.y;
+        finalHeight = trans_finalHeight.position.y;
 
         // Get measures from unitMapMeasures
         if (mapCenter != null)
@@ -375,10 +378,13 @@ public class MapGenerationScript : MonoBehaviour
         float x = (posX - initialPositionX) * mapUnitMeasures * 2;
         float z = (posY - initialPositionY) * mapUnitMeasures * 2;
 
-        GameObject unit = Instantiate(mapUnit, new Vector3(x, 0, z), Quaternion.Euler(mapUnitRotation));
+        GameObject unit = Instantiate(mapUnit, new Vector3(x, initialHeight, z), Quaternion.Euler(mapUnitRotation));
         created++;
         if (unit.GetComponent<MapUnitScript>() != null)
+        {
             matrixUnits[posX, posY] = unit.GetComponent<MapUnitScript>();
+            matrixUnits[posX, posY].SetHeightsForMovement(finalHeight);
+        }
 
     }
 
@@ -403,9 +409,3 @@ public class MatrixPosition
         y = introY;
     }
 }
-/*
-public class NodeUnitMap
-{
-    public MatrixPosition position;
-    public int freeNeighbours;
-}*/
