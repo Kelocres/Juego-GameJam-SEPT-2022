@@ -17,6 +17,8 @@ public class MapUnitScript : MonoBehaviour
     private float desiredDuration = 1f;
     private float elapsedTime;
 
+    private ParticleSystem destructionParticles;
+
     [SerializeField]
     private AnimationCurve curve;
     
@@ -25,6 +27,7 @@ public class MapUnitScript : MonoBehaviour
     {
 
         parked = false;
+        destructionParticles = GetComponentInChildren<ParticleSystem>();
         //received_heights = false;
         if (unitKind == "floor")
         {
@@ -109,6 +112,12 @@ public class MapUnitScript : MonoBehaviour
     public void UnitDestruction()
     {
         Debug.Log("UnitDestruction()");
+
+        //Desenparejar partículas
+        destructionParticles.transform.parent = null;
+        destructionParticles.Play();
+
+        Destroy(destructionParticles.gameObject, 3f);
         Destroy(gameObject);
     }
 }
