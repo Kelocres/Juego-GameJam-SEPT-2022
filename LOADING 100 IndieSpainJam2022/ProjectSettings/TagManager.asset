@@ -12,6 +12,7 @@ TagManager:
   - counter_powerWhite
   - counter_powerRed
   - counter_powerBlue
+  - firewall
   layers:
   - Default
   - TransparentFX
