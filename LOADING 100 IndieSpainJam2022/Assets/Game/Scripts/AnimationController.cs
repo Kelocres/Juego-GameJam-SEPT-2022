@@ -15,8 +15,8 @@ public class AnimationController : MonoBehaviour
     private bool isforwP, isbackP, isleftP, isrightP, isrunP;
     void Start()
     {
-        velocityZ = 0;
-        velocityX = 0;
+        velocityZ = 0;//for,back
+        velocityX = 0;//iz,dere
     }
 
     // Update is called once per frame
@@ -77,7 +77,19 @@ public class AnimationController : MonoBehaviour
         }
         else if (isrightP && velocityX < currenMaxtV && velocityX > (currenMaxtV - 0.05f))
             velocityX = currenMaxtV;
+        //looking-back
+        if (isbackP && isrunP && velocityZ < -currenMaxtV)
+            velocityZ = -currenMaxtV;
 
+        else if (isbackP && velocityZ < -currenMaxtV)
+        {
+
+            velocityZ += Time.deltaTime * deceleration;
+            if (velocityZ < -currenMaxtV && velocityZ > (-currenMaxtV - 0.05f))
+                velocityZ = -currenMaxtV;
+        }
+        else if (isbackP && velocityZ > -currenMaxtV && velocityZ < (-currenMaxtV + 0.05f))
+            velocityZ = -currenMaxtV;
 
         animator.SetFloat("MovX", velocityX);
         animator.SetFloat("MovZ", velocityZ);
@@ -90,6 +102,9 @@ public class AnimationController : MonoBehaviour
 
         if (isbackP && velocityZ > -currenMaxtV)
             velocityZ -= Time.deltaTime * acceleration;
+            
+       
+           
 
         if (isleftP && velocityX > -currenMaxtV)
             velocityX -= Time.deltaTime * acceleration;
@@ -100,7 +115,7 @@ public class AnimationController : MonoBehaviour
         if (!isforwP && velocityZ > 0.0f)
             velocityZ -= Time.deltaTime * deceleration;
 
-        if (!isbackP && velocityX < 0.0f)
+        if (!isbackP && velocityZ < 0.0f)
             velocityZ += Time.deltaTime * deceleration;
 
         if (!isleftP && velocityX < 0.0f)
@@ -108,8 +123,8 @@ public class AnimationController : MonoBehaviour
 
         if (!isrightP && velocityX > 0.0f)
             velocityX -= Time.deltaTime * deceleration;
-
-        if (!isforwP && velocityZ > 0.0f ||!isforwP && velocityZ < 0.0f)
+        
+        if (!isforwP && velocityZ > 0.0f )
             velocityZ = 0;
         if (!isleftP && velocityX < 0.0f)
             velocityX = 0;
