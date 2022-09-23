@@ -8,13 +8,21 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject startPanel;
     public GameObject startText;
+    public AudioClip menuTheme;
+    public AudioClip mainTheme;
 
-     void StartGame()
+
+
+    private void Start()
     {
-        SceneManager.LoadScene("FinalTest");
-        Debug.Log("startGame");
+        SoundManager.instance.StartMusic(menuTheme);
     }
 
+    void StartGame()
+    {
+        SoundManager.instance.StartMusic(mainTheme);
+        SceneManager.LoadScene("FinalTest");       
+    }
 
     public void startRutine()
     {
