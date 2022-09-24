@@ -400,38 +400,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Polvo cueva humo
       objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 159.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 169.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: ShapeModule.m_Scale.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 2.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 93.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key1.a
-      value: 0.41568628
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989373959210896773, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-      propertyPath: ColorModule.gradient.maxGradient.key2.a
-      value: 0.07058824
-      objectReference: {fileID: 0}
     - target: {fileID: 4989373959210896774, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2887,23 +2855,6 @@ Transform:
   m_Father: {fileID: 1001058092}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1223022811 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4989373959210896771, guid: ba29baaf2e0970646ab1a8a6ac6594a5, type: 3}
-  m_PrefabInstance: {fileID: 81320194}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1223022815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223022811}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ff6c1551b5e98459b43b0a1331f111, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1240865170
 GameObject:
   m_ObjectHideFlags: 0
