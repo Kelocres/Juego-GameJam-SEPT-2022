@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Projectile : MonoBehaviour
+public class ProjectileSpawner : MonoBehaviour
 {
- 
-    private float damage;
-    private 
+    // Start is called before the first frame update
+    private GameObject firepoint;
 
     void Start()
     {

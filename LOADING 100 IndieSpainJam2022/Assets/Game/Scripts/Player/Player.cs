@@ -23,13 +23,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CanLook();
+     
 
     }
     private void FixedUpdate()
     {
         CanMove();
-       
+        CanLook();
     }
     public void CanMove()
     {     

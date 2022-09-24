@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Vector3 moveAmount;
+    private Vector3 moveAmount, moveDir;
     private Vector3 smoothMoveVelocity = Vector3.zero;
     private GameObject _gameObject;
     private Rigidbody _rigidbody;
@@ -34,7 +34,7 @@ public class MoveController : MonoBehaviour
     private void FixedUpdate()
     {
          
-        _rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+        //_rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
   
 
     }
@@ -61,14 +61,21 @@ public class MoveController : MonoBehaviour
     }
     public void Move(float x,float z,float speed,float smoothTime)
     {
+        //moveDir.Set(x, 0, z);
         Vector3 moveDir = new Vector3(x,0,z).normalized;
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);
+        _rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);       
+       // moveAmount = moveDir.normalized * speed * Time.deltaTime;
+       //_rigidbody.MovePosition(_transform.position + moveAmount);
     }
+
+
+
     void OnDrawGizmos()
     {
         //Gizmos.color = Color.green;
         //Gizmos.DrawSphere(hitFloor.point, 1);
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(posCamara, hitFloor.point);
+        Gizmos.DrawSphere(hitFloor.point,1);
     }
 }

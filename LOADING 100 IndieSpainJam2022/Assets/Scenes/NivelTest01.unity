@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 611582524}
   - component: {fileID: 611582523}
   - component: {fileID: 611582522}
+  - component: {fileID: 611582525}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -338,6 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movecontroller: {fileID: 611582522}
   cameracontroller: {fileID: 808385530}
+  animationcontroller: {fileID: 0}
 --- !u!4 &611582524
 Transform:
   m_ObjectHideFlags: 0
@@ -353,6 +355,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &611582525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611582521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4168a26d79b7f5d41b86ba81e667e749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 5
+  camera: {fileID: 1067250716}
 --- !u!1 &625465173
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,8 +689,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camforMouse: {fileID: 1067250716}
-  objective: {fileID: 1067250717}
-  smoothing: 5
 --- !u!4 &808385531
 Transform:
   m_ObjectHideFlags: 0
@@ -863,6 +877,7 @@ MonoBehaviour:
   smoothTime: 0.15
   mouseSensitivity: 3.5
   mediator: {fileID: 611582523}
+  anim: {fileID: 0}
 --- !u!54 &968970221
 Rigidbody:
   m_ObjectHideFlags: 0
