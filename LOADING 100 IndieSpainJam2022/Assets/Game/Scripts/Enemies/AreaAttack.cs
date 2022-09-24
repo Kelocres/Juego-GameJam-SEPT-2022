@@ -9,6 +9,8 @@ public class AreaAttack : MonoBehaviour
     public float delay = 3;
     EnemyMove moveScript;
     public ParticleSystem explosion;
+    public AudioClip expSound;
+    public AudioSource source;
 
     private void OnEnable()
     {
@@ -19,6 +21,7 @@ public class AreaAttack : MonoBehaviour
     void Explode()
     {
         bomb.SetActive(true);
+        source.PlayOneShot(expSound);
         explosion.Play();
     }
 

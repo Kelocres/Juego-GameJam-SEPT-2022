@@ -19,15 +19,29 @@ public class EnemyBullet : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        RecycleBullet();
+    //        GameManager.instance.EmptyBar(damage);
+    //        GameManager.instance.UpdateLoading();
+    //    }
+    //    else
+    //    {
+    //        RecycleBullet();
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             RecycleBullet();
             GameManager.instance.EmptyBar(damage);
             GameManager.instance.UpdateLoading();
         }
-        else
+        else if (other.CompareTag("firewall"))
         {
             RecycleBullet();
         }

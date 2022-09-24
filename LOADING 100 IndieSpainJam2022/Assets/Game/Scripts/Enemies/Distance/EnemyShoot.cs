@@ -6,6 +6,8 @@ public class EnemyShoot : MonoBehaviour
 {
     [SerializeField]
     int timeBtwShoots;
+    public AudioClip shoot;
+    public AudioSource source;
     private void OnEnable()
     {
         StartCoroutine(Shooting());
@@ -20,6 +22,7 @@ public class EnemyShoot : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         GetComponent<BulletPool>().ShootBullet();
+        source.PlayOneShot(shoot);
         yield return new WaitForSeconds(timeBtwShoots);
         StartCoroutine(Shooting());
     }
