@@ -45,7 +45,7 @@ public class MapGenerationScript : MonoBehaviour
         matrixMap = new int[mapHeight, mapWidth];
         matrixUnits = new MapUnitScript[mapHeight, mapWidth];
         queueEvaluables = new Queue<MatrixPosition>();
-        Debug.Log("Default matrix value: " + matrixMap[initialPositionX, initialPositionY]);
+        //Debug.Log("Default matrix value: " + matrixMap[initialPositionX, initialPositionY]);
 
         initialHeight = trans_initialHeight.position.y;
         finalHeight = trans_finalHeight.position.y;

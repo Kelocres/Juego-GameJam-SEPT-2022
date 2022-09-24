@@ -41,7 +41,7 @@ public class MoveController : MonoBehaviour
     public void Look(Camera camforMouse)
     {
         Ray camRay = camforMouse.ScreenPointToRay(Input.mousePosition);
- 
+        Debug.Log(camforMouse);
         
         if (Physics.Raycast(camRay, out hitFloor, camRayLongitud, MascaraSuelo))
         {
