@@ -8,7 +8,7 @@ public class MoveController : MonoBehaviour
     private Vector3 moveAmount, moveDir;
     private Vector3 smoothMoveVelocity = Vector3.zero;
     private GameObject _gameObject;
-    private Rigidbody _rigidbody;
+    public Rigidbody _rigidbody;
     private Transform _transform;
     RaycastHit hitFloor;
     //--moverlo--//

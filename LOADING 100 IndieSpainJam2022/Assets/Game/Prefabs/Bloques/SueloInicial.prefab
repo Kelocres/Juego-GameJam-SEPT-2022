@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 692025969594723777}
   - component: {fileID: 3224111683493357089}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SueloInicial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e4799ca83e52b664e89116c529408cce, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4799ca83e52b664e89116c529408cce, type: 3}
@@ -148,7 +148,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30.001873, y: 30.003998, z: 26.226713}
+  m_Size: {x: 30.001873, y: 30.003998, z: 24.38959}
+  m_Center: {x: -15.000166, y: -15.002001, z: -13.31181}
+--- !u!65 &3925708448924093491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386175019940525053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.3, y: 4.3, z: 26.3}
   m_Center: {x: -15.000166, y: -15.002001, z: -12.393249}
 --- !u!4 &1013354510503864647 stripped
 Transform:

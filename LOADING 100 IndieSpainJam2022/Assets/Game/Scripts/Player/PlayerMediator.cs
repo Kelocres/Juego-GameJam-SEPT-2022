@@ -33,6 +33,10 @@ public class PlayerMediator : MonoBehaviour
         float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
+        if(x==0 && z == 0)
+        {
+            movecontroller._rigidbody.velocity = Vector3.zero;
+        }
         movecontroller.Move(x, z, speed, smoothTime);
         animationcontroller.moveAnim();         
     }
