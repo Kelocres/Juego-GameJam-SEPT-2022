@@ -615,8 +615,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
+  m_sharedMaterial: {fileID: -3559048572298346087, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1641,10 +1641,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   writer: {fileID: 493798317}
   place: {fileID: 153053555}
-  tutorial: 'Okey! this is the Code nexus.
+  tutorial: 'Welcome to the game nexus.
 
-    Shoot with [] to destroy whatever
-    is blocking the loading!
+    Destroy the bugs and the game will load
 
 '
 --- !u!114 &493798319
