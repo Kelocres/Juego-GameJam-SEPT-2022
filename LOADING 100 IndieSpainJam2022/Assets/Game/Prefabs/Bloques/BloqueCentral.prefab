@@ -66,6 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitKind: floor
   walls: []
+  sound_Created: {fileID: 8300000, guid: a389c1c2dc5d0fa45885f3c436c9e595, type: 3}
+  sound_Destroyed: {fileID: 8300000, guid: c4fd03f0b32314f4fbae35339767e4eb, type: 3}
   curve:
     serializedVersion: 2
     m_Curve:

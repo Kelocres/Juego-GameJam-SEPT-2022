@@ -17,6 +17,11 @@ public class MapUnitScript : MonoBehaviour
     private float desiredDuration = 1f;
     private float elapsedTime;
 
+    //private AudioSource audioFloor;
+    public AudioClip sound_Created;
+    private bool created_played;
+    public AudioClip sound_Destroyed;
+
     private ParticleSystem destructionParticles;
 
     [SerializeField]
@@ -27,6 +32,7 @@ public class MapUnitScript : MonoBehaviour
     {
 
         parked = false;
+        created_played = false;
         destructionParticles = GetComponentInChildren<ParticleSystem>();
         //received_heights = false;
         if (unitKind == "floor")
@@ -66,7 +72,17 @@ public class MapUnitScript : MonoBehaviour
                 transform.position = Vector3.Lerp(initialPosition, finalPosition,
                     curve.Evaluate(percentageComplete));
 
-                if (elapsedTime >= desiredDuration) parked = true;
+                if(!created_played && percentageComplete >= 0.5)
+                {
+                    SoundManager.instance.PlaySound(sound_Created);
+                    created_played = true;
+                }
+                
+                if (elapsedTime >= desiredDuration)
+                {
+                    parked = true;
+                    //SoundManager.instance.PlaySound(sound_Created);
+                }
             }
         }
     }
@@ -116,6 +132,7 @@ public class MapUnitScript : MonoBehaviour
         //Desenparejar partículas
         destructionParticles.transform.parent = null;
         destructionParticles.Play();
+        SoundManager.instance.PlaySound(sound_Destroyed);
 
         Destroy(destructionParticles.gameObject, 3f);
         Destroy(gameObject);
