@@ -1,0 +1,31 @@
+MÚSICA:
+
+2 canciones:
+
+1- Menú juego inventado -> MENU_THEME:
+	- lineal
+	- tonalidad mayor
+	- estilo: depende del menú del juego
+
+2- Juego principal -> MAIN_THEME:
+	- lineal
+	- estilo: ciber electrónica cubista
+	- arcade
+	- tonalidad mayor
+
+SONIDOS:
+
+- Disparo laser personaje
+- Doble disparo laser personaje
+- Disparo láser del virus
+- Doble disparo laser virus
+- Sonido cuando un bloque es drestuido, el cual se disuelve, para el cubo sonido de explosión (aguda tipo explosión láser), particulas 2''
+- Sonido patitas bug rápido y sutil
+- Sonido cuando el jugador consigue que se cree un suelo nuevo (campanita)
+
+- de enemigo al morir? Solo cubo de momento
+- Movimiento del personaje? NO
+- Click de intentar empezar el juego ficticio? NO
+- Teletransportarse al juego principal? NO
+- sonido al llenarse la barra de loading? NO
+
