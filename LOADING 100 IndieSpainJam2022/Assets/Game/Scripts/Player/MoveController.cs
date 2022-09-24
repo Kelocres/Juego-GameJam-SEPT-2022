@@ -40,12 +40,12 @@ public class MoveController : MonoBehaviour
     }
     public void Look(Camera camforMouse)
     {
-        //Debug.Log(Input.mousePosition);
         Ray camRay = camforMouse.ScreenPointToRay(Input.mousePosition);
  
         
         if (Physics.Raycast(camRay, out hitFloor, camRayLongitud, MascaraSuelo))
         {
+            Debug.Log(Input.mousePosition);
        
             Vector3 playerPointToMouse = hitFloor.point - _transform.position;
             
@@ -63,10 +63,10 @@ public class MoveController : MonoBehaviour
     {
         //moveDir.Set(x, 0, z);
         Vector3 moveDir = new Vector3(x,0,z).normalized;
-        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);
-        _rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);       
-       // moveAmount = moveDir.normalized * speed * Time.deltaTime;
-       //_rigidbody.MovePosition(_transform.position + moveAmount);
+        //moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);
+        //_rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);       
+        moveAmount = moveDir.normalized * speed * Time.deltaTime;
+        _rigidbody.MovePosition(_transform.position + moveAmount);
     }
 
 

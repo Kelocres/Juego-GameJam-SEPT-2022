@@ -77,7 +77,7 @@ public class MapGenerationScript : MonoBehaviour
                 if (unitCenter != null)
                 {
                     matrixUnits[x, y] = unitCenter;
-                    Debug.Log("FirstMapUnits() La unidad x=" + x + ", y=" + y + " es " + matrixUnits[x, y].unitKind);
+                    //Debug.Log("FirstMapUnits() La unidad x=" + x + ", y=" + y + " es " + matrixUnits[x, y].unitKind);
                 }
                 queueEvaluables.Enqueue(new MatrixPosition(x, y));
                 //CreateMapUnit(x, y);

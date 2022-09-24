@@ -46,10 +46,26 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        Debug.Log(collision.gameObject.name);
+    //        GameManager.instance.FillBar(damage);
+    //        GameManager.instance.UpdateLoading();
+    //        Destroy(gameObject);
+    //        //if(combatType == Combat.Meele)
+    //        //{
+    //        //    Destroy(gameObject);
+    //        //}
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
+            
             GameManager.instance.FillBar(damage);
             GameManager.instance.UpdateLoading();
             Destroy(gameObject);
