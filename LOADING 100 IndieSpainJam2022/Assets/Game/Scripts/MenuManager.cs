@@ -67,5 +67,10 @@ public class MenuManager : MonoBehaviour
         record02.text = TimeSpan.FromSeconds(records[1]).ToString(@"mm\:ss\:fff");
         record03.text = TimeSpan.FromSeconds(records[2]).ToString(@"mm\:ss\:fff");
     }
+
+    public void CloseRecords()
+    {
+        recordsPanel.SetActive(false);
+    }
     
 }

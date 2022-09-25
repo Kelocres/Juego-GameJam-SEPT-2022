@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public int loadingBar = 5;
     MapGenerationScript mapScript;
-    public TextMeshProUGUI loadingText;
+    public CanvasManager canvasScript;
     
 
     private void Awake()
@@ -24,12 +24,11 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         mapScript = GameObject.Find("MapGenerator").GetComponent<MapGenerationScript>();
-        GameManager.instance.UpdateLoading();
     }
     public void FillBar(int points)
     {
         loadingBar += points;
-        Debug.Log("FillBar() loadingBar = " + loadingBar);
+        canvasScript.UpdateSlider(loadingBar);
         //Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
         //bar_loading.rectTransform.localScale = scalame;
         mapScript.StartExpandMap(1);
@@ -42,12 +41,6 @@ public class GameManager : MonoBehaviour
             mapScript.StartDestroyMap(1);
         }
         loadingBar -= points;
-    }
-
-    public void UpdateLoading()
-    {
-        loadingText.text = "Loading..." + loadingBar.ToString() + "%";
-        //Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
-        //bar_loading.rectTransform.localScale = scalame;
+        canvasScript.UpdateSlider(loadingBar);
     }
 }

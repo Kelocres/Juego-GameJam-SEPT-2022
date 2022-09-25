@@ -39,7 +39,6 @@ public class EnemyBullet : MonoBehaviour
         {
             RecycleBullet();
             GameManager.instance.EmptyBar(damage);
-            GameManager.instance.UpdateLoading();
         }
         else if (other.CompareTag("firewall"))
         {

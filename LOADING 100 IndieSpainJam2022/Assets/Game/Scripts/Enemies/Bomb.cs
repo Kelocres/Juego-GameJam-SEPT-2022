@@ -10,7 +10,6 @@ public class Bomb : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManager.instance.EmptyBar(damage);
-            GameManager.instance.UpdateLoading();
         }
     }
 

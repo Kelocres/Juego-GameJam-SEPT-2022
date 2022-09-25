@@ -52,7 +52,6 @@ public class EnemyAttack : MonoBehaviour
         {
 
             GameManager.instance.FillBar(damage);
-            GameManager.instance.UpdateLoading();
             collision.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<EnemyStats>().GetDamage(5);
             //if(combatType == Combat.Meele)
