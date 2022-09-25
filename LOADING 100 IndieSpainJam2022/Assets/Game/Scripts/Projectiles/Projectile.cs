@@ -31,11 +31,11 @@ public abstract class Projectile : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         DestroyProjectile();
     }
-    /*public void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
-        
-        DestroyProjectile();
-    }*/
+        if(collision.gameObject!=this)
+            DestroyProjectile();
+    }
     private void DestroyProjectile()
     {
         DoDestroy();

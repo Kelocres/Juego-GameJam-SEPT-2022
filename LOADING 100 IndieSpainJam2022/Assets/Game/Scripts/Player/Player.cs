@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
         TryShoot(getMouseRotation());
         if (Input.GetKey(KeyCode.Z))
             mediator.CanChangeProjectileType(ProjectileT.Especial);
+        if (Input.GetKey(KeyCode.X))
+            mediator.CanChangeProjectileType(ProjectileT.Normal);
     }
     private void FixedUpdate()
     {
