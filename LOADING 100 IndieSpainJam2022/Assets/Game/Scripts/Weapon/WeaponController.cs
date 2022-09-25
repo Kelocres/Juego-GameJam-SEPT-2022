@@ -7,7 +7,7 @@ using Quaternion = UnityEngine.Quaternion;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private float _fireRateInSeconds;
-
+              
     [SerializeField] private Transform _projectileSpawnPosition;
 
     [SerializeField] private float _remainingSecondsToBeAbleToShoot;
@@ -17,24 +17,42 @@ public class WeaponController : MonoBehaviour
     private ProjectileSpawner _projectileSpawner;
     [SerializeField] private ProjectileId _defaultProjectId; 
     [SerializeField] private ProjectilesConfiguration projectileConfig;
+    private float _normalfireRateInSeconds, _especialfireRateInSeconds;
+
+    public float RemainingSecondsToBeAbleToShoot { get => _remainingSecondsToBeAbleToShoot; set => _remainingSecondsToBeAbleToShoot = value; }
+
+    //public float FireRateInSeconds { get => _fireRateInSeconds; set => _fireRateInSeconds = value; }
+    enum ProjectileT
+    {
+        Normal,
+        Especial
+    }
     private void Awake()
     {
         
         _activeProjectile = _defaultProjectId.Value;
         ProjectilesConfiguration _projectileConfig = Instantiate(projectileConfig);
         _projectileSpawner = new ProjectileSpawner(_projectileConfig);
+        _normalfireRateInSeconds = _fireRateInSeconds;
+        _especialfireRateInSeconds = _normalfireRateInSeconds / 2;
     }
-     
 
+    public void ChangeFireRate(bool especial) {
+        if(especial)
+            _fireRateInSeconds = _especialfireRateInSeconds;
+        else
+            _fireRateInSeconds = _normalfireRateInSeconds;
+    }
+
+     
     public void TryShoot(Quaternion rotation)
     {
-        _remainingSecondsToBeAbleToShoot -= Time.deltaTime;
+        RemainingSecondsToBeAbleToShoot -= Time.deltaTime;
      
-        if (_remainingSecondsToBeAbleToShoot > 0)
+        if (RemainingSecondsToBeAbleToShoot > 0)
         {
             return;
-        }
-        Debug.Log(rotation);
+        }       
         Shoot(rotation);
     }
     private void Shoot(Quaternion rotation)
@@ -43,7 +61,9 @@ public class WeaponController : MonoBehaviour
                                  _projectileSpawnPosition.position,
                                  Quaternion.identity);
         projectile.transform.localRotation = rotation;
-      _remainingSecondsToBeAbleToShoot = _fireRateInSeconds;
+
+         
+      RemainingSecondsToBeAbleToShoot = _fireRateInSeconds;
        
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody))]
 public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] protected float _speed;
@@ -10,9 +10,10 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField]
     private float desTroyIn;
     [SerializeField] protected Rigidbody _rigidbody;
-    private float damage;
+    [SerializeField] protected float damage;
+   
     public string Id { get => _id.Value; }
-    public float Damage { get => damage; set => damage = value; }
+    //public float Damage { get => damage; set => damage = value; }
     private void FixedUpdate()
     {
         DoMove();
@@ -30,7 +31,10 @@ public abstract class Projectile : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         DestroyProjectile();
     }
-
+    public void OnCollisionEnter(Collision collision)
+    {
+        DestroyProjectile();
+    }
     private void DestroyProjectile()
     {
         DoDestroy();

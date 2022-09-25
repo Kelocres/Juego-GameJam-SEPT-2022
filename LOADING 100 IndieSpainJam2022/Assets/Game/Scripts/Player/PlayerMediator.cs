@@ -33,6 +33,14 @@ public class PlayerMediator : MonoBehaviour
         }
            
     }
+    public void CanChangeProjectileType(string projectileT)
+    {
+        if (weaponcontroller.RemainingSecondsToBeAbleToShoot <= 0.0f)          
+            weaponcontroller.ChangeFireRate(projectileT == "Especial");
+            
+       
+      
+    }
     public void CanLook(float mouseSensitivity)
     {
        // float getAxisMousex = Input.GetAxisRaw("Mouse X");

@@ -18,12 +18,15 @@ public class Player : MonoBehaviour
     {
          
         mediator.Configure(gameObject.gameObject);
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         TryShoot(getMouseRotation());
+        mediator.CanChangeProjectileType("Normal");
     }
     private void FixedUpdate()
     {

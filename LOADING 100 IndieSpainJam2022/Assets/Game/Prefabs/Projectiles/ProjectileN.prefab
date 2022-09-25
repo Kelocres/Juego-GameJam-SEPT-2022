@@ -77,10 +77,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f3b7a9e18caaa41a3b5229aaa6b272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 400
+  _speed: 800
   _id: {fileID: 11400000, guid: 96391e0b34a5b4d40a03c1be3fa5ef24, type: 2}
   desTroyIn: 20
   _rigidbody: {fileID: 3155035533535097944}
+  damage: 4
 --- !u!1 &4530602929009108007
 GameObject:
   m_ObjectHideFlags: 0

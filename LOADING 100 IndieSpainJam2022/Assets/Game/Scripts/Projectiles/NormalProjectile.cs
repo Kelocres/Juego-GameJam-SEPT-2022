@@ -17,6 +17,7 @@ namespace Assets.Game.Scripts.Projectiles
         protected override void DoMove()
         {
             GetComponent<Rigidbody>().velocity = transform.forward * _speed*Time.deltaTime;
+            //transform.position += transform.forward * _speed * Time.deltaTime;
         }
 
         protected override void DoStart()
