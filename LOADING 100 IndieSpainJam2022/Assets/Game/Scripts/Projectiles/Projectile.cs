@@ -33,8 +33,8 @@ public abstract class Projectile : MonoBehaviour
     }
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject!=this)
-            DestroyProjectile();
+        //if(collision.gameObject!=this)
+          //  DestroyProjectile();
     }
     private void DestroyProjectile()
     {
