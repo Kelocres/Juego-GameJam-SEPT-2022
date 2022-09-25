@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using System.Linq;
 
 public class MenuManager : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI intro;
     [TextArea]
     public string introText;
+    [Header("records")]
+    public TextMeshProUGUI record01;
+    public TextMeshProUGUI record02;
+    public TextMeshProUGUI record03;
+    public GameObject recordsPanel;
 
 
     private void Start()
@@ -49,6 +56,16 @@ public class MenuManager : MonoBehaviour
         writer.Write(intro, introText);
         yield return new WaitForSeconds(5);
         startButton.SetActive(true);
+    }
+
+    public void LoadRecords()
+    {
+        recordsPanel.SetActive(true);
+
+        List<float> records = Array.ConvertAll(PlayerPrefs.GetString("record", "0,0,0").Split(","), float.Parse).ToList();
+        record01.text = TimeSpan.FromSeconds(records[0]).ToString(@"mm\:ss\:fff");
+        record02.text = TimeSpan.FromSeconds(records[1]).ToString(@"mm\:ss\:fff");
+        record03.text = TimeSpan.FromSeconds(records[2]).ToString(@"mm\:ss\:fff");
     }
     
 }

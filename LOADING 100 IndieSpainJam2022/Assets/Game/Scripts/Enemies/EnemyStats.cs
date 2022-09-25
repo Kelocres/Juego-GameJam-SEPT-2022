@@ -6,22 +6,24 @@ public class EnemyStats : MonoBehaviour
 {
     public int maxHealth;
     public int health;
-
+    public GameObject deadEffect;
+    public AudioClip enemyDieSound;
 
     private void Start()
     {
         health = maxHealth;
     }
 
-    void GetDamage(int damage)
+    public void GetDamage(int damage)
     {
-        if(health > 0)
+        health -= damage;
+        if(health < 0)
         {
-            health -= damage;
-        }
-        else
-        {
+            SoundManager.instance.PlaySound(enemyDieSound);
+            deadEffect.transform.parent = null;
+            deadEffect.SetActive(true);
             GameManager.instance.FillBar(maxHealth);
+            Destroy(gameObject);
         }
 
     }
