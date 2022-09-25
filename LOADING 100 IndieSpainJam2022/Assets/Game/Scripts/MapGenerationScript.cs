@@ -121,12 +121,16 @@ public class MapGenerationScript : MonoBehaviour
         //int desiredValue = arrayDesirableValues[Random.Range(0, arrayDesirableValues.Length)];
         //StartCoroutine(SearchNewRouteOrigin(desiredValue));
         //StartCoroutine(WaitingForOrigin(numUnits));
+
         int index = Random.Range(0, desirablePositions.Count);
-        origin = desirablePositions[index];
-        desirablePositions.RemoveAt(index);
+        if(desirablePositions.Count > 0)
+        {
+            origin = desirablePositions[index];
+            desirablePositions.RemoveAt(index);
+            StartCoroutine(ExpandMap(numUnits));
+        }
 
         StopAllCoroutines();
-        StartCoroutine(ExpandMap(numUnits));
         //ExpandMap(numUnits);
     }
 
@@ -143,9 +147,9 @@ public class MapGenerationScript : MonoBehaviour
     private IEnumerator ExpandMap(int numUnits)
     //private void ExpandMap(int numUnits)
     {
-        Debug.Log("ExpandMap() Posicion origin x=" + origin.x + ", y=" + origin.y);
+        //Debug.Log("ExpandMap() Posicion origin x=" + origin.x + ", y=" + origin.y);
         
-        Debug.Log("ExpandMap() For loop para identificar la orientación");
+        //Debug.Log("ExpandMap() For loop para identificar la orientación");
        
         int i = Random.Range(0, routeOrientations.Length);
         int counter = 30;
@@ -204,9 +208,12 @@ public class MapGenerationScript : MonoBehaviour
 
     public void StartDestroyMap(int numUnits)
     {
+        if(desirablePositions.Count <= 0)
+        {
+            return;
+        }
         int index = Random.Range(0, desirablePositions.Count);
         //El suelo central debe ser el último en destruirse
-
         MatrixPosition comprobar = desirablePositions[index];
         origin = null;
 
