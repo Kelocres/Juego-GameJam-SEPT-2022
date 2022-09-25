@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using static WeaponController;
 using Quaternion = UnityEngine.Quaternion;
 
 public class WeaponController : MonoBehaviour
@@ -22,11 +23,12 @@ public class WeaponController : MonoBehaviour
     public float RemainingSecondsToBeAbleToShoot { get => _remainingSecondsToBeAbleToShoot; set => _remainingSecondsToBeAbleToShoot = value; }
 
     //public float FireRateInSeconds { get => _fireRateInSeconds; set => _fireRateInSeconds = value; }
-    enum ProjectileT
+    public enum ProjectileT
     {
         Normal,
         Especial
     }
+    ProjectileT actualProjectile;
     private void Awake()
     {
         
@@ -37,11 +39,21 @@ public class WeaponController : MonoBehaviour
         _especialfireRateInSeconds = _normalfireRateInSeconds / 2;
     }
 
-    public void ChangeFireRate(bool especial) {
-        if(especial)
+    public void ChangeProjectileType(ProjectileT  pType) {
+        if (RemainingSecondsToBeAbleToShoot > 0)
+            return;
+            if (pType == ProjectileT.Especial)
+            {
             _fireRateInSeconds = _especialfireRateInSeconds;
-        else
-            _fireRateInSeconds = _normalfireRateInSeconds;
+            _activeProjectile = "Especial";
+
+            }
+            else
+            {
+                _fireRateInSeconds = _normalfireRateInSeconds;
+                 _activeProjectile = "Especial";
+             }
+            
     }
 
      
@@ -63,7 +75,7 @@ public class WeaponController : MonoBehaviour
         projectile.transform.localRotation = rotation;
 
          
-      RemainingSecondsToBeAbleToShoot = _fireRateInSeconds;
+        RemainingSecondsToBeAbleToShoot = _fireRateInSeconds;
        
     }
 }

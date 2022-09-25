@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static WeaponController;
 
 public class Player : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         TryShoot(getMouseRotation());
-        mediator.CanChangeProjectileType("Normal");
+        if (Input.GetKey(KeyCode.Z))
+            mediator.CanChangeProjectileType(ProjectileT.Especial);
     }
     private void FixedUpdate()
     {

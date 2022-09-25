@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0039967415, g: 0.00021799165, b: 0.000000051570158, a: 1}
+  m_IndirectSpecularColor: {r: 0.003996745, g: 0.00021799185, b: 0.000000051570158, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5954,7 +5954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067250713}
   m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: 5.2931585, y: 22.38677, z: -39.211926}
+  m_LocalPosition: {x: 5.531935, y: 22.38677, z: -39.211926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6333,7 +6333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20def0260dc667a438d193edb742dcd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRateInSeconds: 0.1
+  _fireRateInSeconds: 0.2
   _projectileSpawnPosition: {fileID: 625465177}
   _remainingSecondsToBeAbleToShoot: 0
   _defaultProjectId: {fileID: 11400000, guid: 96391e0b34a5b4d40a03c1be3fa5ef24, type: 2}
@@ -6663,7 +6663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081184295}
   m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: 5.2931585, y: 22.38677, z: -39.211926}
+  m_LocalPosition: {x: 5.531935, y: 22.38677, z: -39.211926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

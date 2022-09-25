@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static WeaponController;
 
 public class PlayerMediator : MonoBehaviour
 {
@@ -33,10 +34,10 @@ public class PlayerMediator : MonoBehaviour
         }
            
     }
-    public void CanChangeProjectileType(string projectileT)
+    public void CanChangeProjectileType(ProjectileT projectileT)
     {
-        if (weaponcontroller.RemainingSecondsToBeAbleToShoot <= 0.0f)          
-            weaponcontroller.ChangeFireRate(projectileT == "Especial");
+              
+            weaponcontroller.ChangeProjectileType(projectileT);
             
        
       
