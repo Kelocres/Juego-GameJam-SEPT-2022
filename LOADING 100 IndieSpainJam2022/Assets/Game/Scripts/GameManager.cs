@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public int loadingBar = 5;
     MapGenerationScript mapScript;
     public CanvasManager canvasScript;
-    
 
     private void Awake()
     {
@@ -31,7 +30,15 @@ public class GameManager : MonoBehaviour
         canvasScript.UpdateSlider(loadingBar);
         //Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
         //bar_loading.rectTransform.localScale = scalame;
-        mapScript.StartExpandMap(1);
+        if(loadingBar%3 == 0)
+        {
+            mapScript.StartExpandMap(1);
+            Debug.Log("se amplia");
+        }
+        if(loadingBar >= 100)
+        {
+            WinGame();
+        }
     }
 
     public void EmptyBar(int points)
@@ -42,5 +49,13 @@ public class GameManager : MonoBehaviour
         }
         loadingBar -= points;
         canvasScript.UpdateSlider(loadingBar);
+    }
+
+    public void WinGame()
+    {
+        GameObject.Find("EnemySpawner").SetActive(false);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies) {Destroy(enemy);}
+        canvasScript.ShowWinCanvas();
     }
 }
