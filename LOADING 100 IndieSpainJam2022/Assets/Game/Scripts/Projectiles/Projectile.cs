@@ -33,6 +33,7 @@ public abstract class Projectile : MonoBehaviour
     }
     /*public void OnCollisionEnter(Collision collision)
     {
+        
         DestroyProjectile();
     }*/
     private void DestroyProjectile()

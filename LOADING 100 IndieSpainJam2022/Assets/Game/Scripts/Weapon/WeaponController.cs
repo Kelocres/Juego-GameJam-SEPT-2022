@@ -40,8 +40,8 @@ public class WeaponController : MonoBehaviour
     }
 
     public void ChangeProjectileType(ProjectileT  pType) {
-        if (RemainingSecondsToBeAbleToShoot > 0)
-            return;
+       // if (RemainingSecondsToBeAbleToShoot >= 0)
+         //   return;
             if (pType == ProjectileT.Especial)
             {
             _fireRateInSeconds = _especialfireRateInSeconds;
@@ -51,7 +51,7 @@ public class WeaponController : MonoBehaviour
             else
             {
                 _fireRateInSeconds = _normalfireRateInSeconds;
-                 _activeProjectile = "Especial";
+                 _activeProjectile = "Normal";
              }
             
     }
