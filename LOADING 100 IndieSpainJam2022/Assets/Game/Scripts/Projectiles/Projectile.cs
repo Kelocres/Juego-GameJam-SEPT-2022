@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Projectile : MonoBehaviour
 {
-    protected float speed;
+    [SerializeField] protected float _speed;
     protected Transform _transform;
     [SerializeField] private ProjectileId _id;
     [SerializeField]

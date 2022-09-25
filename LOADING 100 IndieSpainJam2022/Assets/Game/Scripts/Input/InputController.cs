@@ -53,5 +53,9 @@ using UnityEngine;
         {
             return Input.GetKey(KeyCode.LeftShift);
         }
+        public bool IsFirePress()
+        {
+         return Input.GetKey(KeyCode.Mouse0);
+        }
 }
  

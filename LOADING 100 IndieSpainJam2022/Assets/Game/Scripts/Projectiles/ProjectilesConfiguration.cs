@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "Create ProjectilesConfiguration",
+[CreateAssetMenu(menuName = "ProjectileInDictionary",
                  fileName = "ProjectilesConfiguration",
                     order = 0)]
-public class ProjectileConfig : ScriptableObject
+public class ProjectilesConfiguration : ScriptableObject
 {
     [SerializeField] private Projectile[] _projectilePrefabs;
  

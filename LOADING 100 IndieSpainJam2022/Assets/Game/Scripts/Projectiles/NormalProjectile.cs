@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Game.Scripts.Projectiles
 {
@@ -10,17 +11,17 @@ namespace Assets.Game.Scripts.Projectiles
     {
         protected override void DoDestroy()
         {
-            throw new NotImplementedException();
+             
         }
 
         protected override void DoMove()
         {
-            throw new NotImplementedException();
+            GetComponent<Rigidbody>().velocity = transform.forward * _speed*Time.deltaTime;
         }
 
         protected override void DoStart()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

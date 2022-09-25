@@ -9,6 +9,7 @@ public class PlayerMediator : MonoBehaviour
     [SerializeField] MoveController movecontroller;
     [SerializeField] CameraController cameracontroller;
     [SerializeField] AnimationController animationcontroller;
+    [SerializeField] WeaponController weaponcontroller;
     void Start()
     {
         
@@ -23,6 +24,15 @@ public class PlayerMediator : MonoBehaviour
     {
         
     }
+    public void TryShoot(Quaternion rotation)
+    {
+        if (InputController.Instance.IsFirePress())
+        {
+            
+            weaponcontroller.TryShoot(rotation);
+        }
+           
+    }
     public void CanLook(float mouseSensitivity)
     {
        // float getAxisMousex = Input.GetAxisRaw("Mouse X");
@@ -33,11 +43,13 @@ public class PlayerMediator : MonoBehaviour
         float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
-        if(x==0 && z == 0)
-        {
-            movecontroller._rigidbody.velocity = Vector3.zero;
-        }
+        
         movecontroller.Move(x, z, speed, smoothTime);
         animationcontroller.moveAnim();         
+    }
+
+    public Quaternion getMouseRotation()
+    {
+        return movecontroller.NewRotation;
     }
 }

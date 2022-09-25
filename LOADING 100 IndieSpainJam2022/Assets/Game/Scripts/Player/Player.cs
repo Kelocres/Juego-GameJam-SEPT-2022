@@ -23,8 +23,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-     
-
+        TryShoot(getMouseRotation());
     }
     private void FixedUpdate()
     {
@@ -39,5 +38,13 @@ public class Player : MonoBehaviour
     {
         mediator.CanLook(mouseSensitivity);
     }
-    
+    public void TryShoot(Quaternion rotation)
+    {
+        mediator.TryShoot(rotation);
+    }
+    public Quaternion getMouseRotation()
+    {
+        return mediator.getMouseRotation();
+    }
+
 }

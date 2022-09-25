@@ -8,13 +8,17 @@ public class MoveController : MonoBehaviour
     private Vector3 moveAmount, moveDir;
     private Vector3 smoothMoveVelocity = Vector3.zero;
     private GameObject _gameObject;
-    public Rigidbody _rigidbody;
+    private Rigidbody _rigidbody;
     private Transform _transform;
+    private Quaternion newRotation;
     RaycastHit hitFloor;
     //--moverlo--//
     private int MascaraSuelo;
     private float camRayLongitud = 1000f;
     private Vector3 posCamara;
+
+    public Quaternion NewRotation { get => newRotation; set => newRotation = value; }
+
     private void Start()
     {
         MascaraSuelo = LayerMask.GetMask("Floor");
@@ -41,19 +45,19 @@ public class MoveController : MonoBehaviour
     public void Look(Camera camforMouse)
     {
         Ray camRay = camforMouse.ScreenPointToRay(Input.mousePosition);
-        Debug.Log(camforMouse);
+        //Debug.Log(camforMouse);
         
         if (Physics.Raycast(camRay, out hitFloor, camRayLongitud, MascaraSuelo))
         {
-            Debug.Log(Input.mousePosition);
+           // Debug.Log(Input.mousePosition);
        
             Vector3 playerPointToMouse = hitFloor.point - _transform.position;
             
             playerPointToMouse.y = 0f;
             
-            Quaternion nuevaRotacion = Quaternion.LookRotation(playerPointToMouse);
+             NewRotation = Quaternion.LookRotation(playerPointToMouse);
             
-            _rigidbody.MoveRotation(nuevaRotacion);
+            _rigidbody.MoveRotation(NewRotation);
 
         }
         posCamara = camforMouse.transform.position;
@@ -61,6 +65,10 @@ public class MoveController : MonoBehaviour
     }
     public void Move(float x,float z,float speed,float smoothTime)
     {
+        if (x == 0 && z == 0)
+        {
+            _rigidbody.velocity = Vector3.zero;
+        }
         //moveDir.Set(x, 0, z);
         Vector3 moveDir = new Vector3(x,0,z).normalized;
         //moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);

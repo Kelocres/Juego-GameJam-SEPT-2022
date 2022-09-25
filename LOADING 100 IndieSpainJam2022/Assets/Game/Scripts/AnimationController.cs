@@ -28,106 +28,131 @@ public class AnimationController : MonoBehaviour
             isrightP = InputController.Instance.IsRighttPress();
             isrunP = InputController.Instance.IsRunPress();
     }
-  
-    public void moveAnim()
-    {   
+    /*public void moveAnim()
+    {
         float currenMaxtV = isrunP ? maxRV : maxWV;
         ChangeVelocity(isforwP, isbackP, isleftP, isrightP, currenMaxtV);
-
         //if (!isforwP && velocityZ < 0.0f && !isrunP)
         //  velocityZ = 0;
 
         //lookingforw
-        if (isforwP && isrunP && velocityZ > currenMaxtV)
+        if ((isforwP || isbackP || isleftP || isrightP) && isrunP && velocityZ > currenMaxtV)
             velocityZ = currenMaxtV;
 
-        else if (isforwP && velocityZ > currenMaxtV)
+        else if ((isforwP || isbackP || isleftP || isrightP) && velocityZ > currenMaxtV)
         {
 
             velocityZ -= Time.deltaTime * deceleration;
             if (velocityZ > currenMaxtV && velocityZ < (currenMaxtV + 0.05f))
                 velocityZ = currenMaxtV;
         }
-        else if (isforwP && velocityZ < currenMaxtV && velocityZ > (currenMaxtV - 0.05f))
+        else if ((isforwP || isbackP || isleftP || isrightP) && velocityZ < currenMaxtV && velocityZ > (currenMaxtV - 0.05f))
             velocityZ = currenMaxtV;
-
-        //--lookingleft
-        if (isleftP && isrunP && velocityX < -currenMaxtV)
-            velocityX = -currenMaxtV;
-
-        else if (isleftP && velocityX < -currenMaxtV)
-        {
-
-            velocityX += Time.deltaTime * deceleration;
-            if (velocityX < -currenMaxtV && velocityX > (-currenMaxtV - 0.05f))
-                velocityX = -currenMaxtV;
-        }
-        else if (isleftP && velocityX > -currenMaxtV && velocityX < (-currenMaxtV + 0.05f))
-            velocityX = -currenMaxtV;
-        // looking-ri
-        if (isrightP && isrunP && velocityX > currenMaxtV)
-            velocityX = currenMaxtV;
-
-        else if (isrightP && velocityX > currenMaxtV)
-        {
-
-            velocityX -= Time.deltaTime * deceleration;
-            if (velocityX > currenMaxtV && velocityX < (currenMaxtV + 0.05f))
-                velocityX = currenMaxtV;
-        }
-        else if (isrightP && velocityX < currenMaxtV && velocityX > (currenMaxtV - 0.05f))
-            velocityX = currenMaxtV;
-        //looking-back
-        if (isbackP && isrunP && velocityZ < -currenMaxtV)
-            velocityZ = -currenMaxtV;
-
-        else if (isbackP && velocityZ < -currenMaxtV)
-        {
-
-            velocityZ += Time.deltaTime * deceleration;
-            if (velocityZ < -currenMaxtV && velocityZ > (-currenMaxtV - 0.05f))
-                velocityZ = -currenMaxtV;
-        }
-        else if (isbackP && velocityZ > -currenMaxtV && velocityZ < (-currenMaxtV + 0.05f))
-            velocityZ = -currenMaxtV;
-
-        animator.SetFloat("MovX", velocityX);
-        animator.SetFloat("MovZ", velocityZ);
     }
-
     private void ChangeVelocity(bool isforwP, bool isbackP, bool isleftP, bool isrightP, float currenMaxtV)
     {
-        if (isforwP && velocityZ < currenMaxtV)
+        if ((isforwP || isbackP || isleftP || isrightP) && velocityZ < currenMaxtV)
             velocityZ += Time.deltaTime * acceleration;
+    }*/
+         public void moveAnim()
+         {   
+             float currenMaxtV = isrunP ? maxRV : maxWV;
+             ChangeVelocity(isforwP, isbackP, isleftP, isrightP, currenMaxtV);
 
-        if (isbackP && velocityZ > -currenMaxtV)
-            velocityZ -= Time.deltaTime * acceleration;
-            
-       
-           
+             //if (!isforwP && velocityZ < 0.0f && !isrunP)
+             //  velocityZ = 0;
 
-        if (isleftP && velocityX > -currenMaxtV)
-            velocityX -= Time.deltaTime * acceleration;
+             //lookingforw
+             if (isforwP && isrunP && velocityZ > currenMaxtV)
+                 velocityZ = currenMaxtV;
 
-        if (isrightP && velocityX < currenMaxtV)
-            velocityX += Time.deltaTime * acceleration;
+             else if (isforwP && velocityZ > currenMaxtV)
+             {
 
-        if (!isforwP && velocityZ > 0.0f)
-            velocityZ -= Time.deltaTime * deceleration;
+                 velocityZ -= Time.deltaTime * deceleration;
+                 if (velocityZ > currenMaxtV && velocityZ < (currenMaxtV + 0.05f))
+                     velocityZ = currenMaxtV;
+             }
+             else if (isforwP && velocityZ < currenMaxtV && velocityZ > (currenMaxtV - 0.05f))
+                 velocityZ = currenMaxtV;
 
-        if (!isbackP && velocityZ < 0.0f)
-            velocityZ += Time.deltaTime * deceleration;
+             //--lookingleft
+             if (isleftP && isrunP && velocityX < -currenMaxtV)
+                 velocityX = -currenMaxtV;
 
-        if (!isleftP && velocityX < 0.0f)
-            velocityX += Time.deltaTime * deceleration;
+             else if (isleftP && velocityX < -currenMaxtV)
+             {
 
-        if (!isrightP && velocityX > 0.0f)
-            velocityX -= Time.deltaTime * deceleration;
-        
-       if(!isrightP && !isleftP && velocityX !=0 && (velocityX>-0.08f && velocityX < 0.08f))
-            velocityX = 0.0f;
-        if (!isforwP && !isbackP && velocityZ != 0 && (velocityZ > -0.08f && velocityZ < 0.08f))
-            velocityZ = 0.0f;
+                 velocityX += Time.deltaTime * deceleration;
+                 if (velocityX < -currenMaxtV && velocityX > (-currenMaxtV - 0.05f))
+                     velocityX = -currenMaxtV;
+             }
+             else if (isleftP && velocityX > -currenMaxtV && velocityX < (-currenMaxtV + 0.05f))
+                 velocityX = -currenMaxtV;
+             // looking-ri
+             if (isrightP && isrunP && velocityX > currenMaxtV)
+                 velocityX = currenMaxtV;
+
+             else if (isrightP && velocityX > currenMaxtV)
+             {
+
+                 velocityX -= Time.deltaTime * deceleration;
+                 if (velocityX > currenMaxtV && velocityX < (currenMaxtV + 0.05f))
+                     velocityX = currenMaxtV;
+             }
+             else if (isrightP && velocityX < currenMaxtV && velocityX > (currenMaxtV - 0.05f))
+                 velocityX = currenMaxtV;
+             //looking-back
+             if (isbackP && isrunP && velocityZ < -currenMaxtV)
+                 velocityZ = -currenMaxtV;
+
+             else if (isbackP && velocityZ < -currenMaxtV)
+             {
+
+                 velocityZ += Time.deltaTime * deceleration;
+                 if (velocityZ < -currenMaxtV && velocityZ > (-currenMaxtV - 0.05f))
+                     velocityZ = -currenMaxtV;
+             }
+             else if (isbackP && velocityZ > -currenMaxtV && velocityZ < (-currenMaxtV + 0.05f))
+                 velocityZ = -currenMaxtV;
+
+             animator.SetFloat("MovX", velocityX);
+             animator.SetFloat("MovZ", velocityZ);
+         }
+
+         private void ChangeVelocity(bool isforwP, bool isbackP, bool isleftP, bool isrightP, float currenMaxtV)
+         {
+             if (isforwP && velocityZ < currenMaxtV)
+                 velocityZ += Time.deltaTime * acceleration;
+
+             if (isbackP && velocityZ > -currenMaxtV)
+                 velocityZ -= Time.deltaTime * acceleration;
+
+
+
+
+             if (isleftP && velocityX > -currenMaxtV)
+                 velocityX -= Time.deltaTime * acceleration;
+
+             if (isrightP && velocityX < currenMaxtV)
+                 velocityX += Time.deltaTime * acceleration;
+
+             if (!isforwP && velocityZ > 0.0f)
+                 velocityZ -= Time.deltaTime * deceleration;
+
+             if (!isbackP && velocityZ < 0.0f)
+                 velocityZ += Time.deltaTime * deceleration;
+
+             if (!isleftP && velocityX < 0.0f)
+                 velocityX += Time.deltaTime * deceleration;
+
+             if (!isrightP && velocityX > 0.0f)
+                 velocityX -= Time.deltaTime * deceleration;
+
+            if(!isrightP && !isleftP && velocityX !=0 && (velocityX>-0.08f && velocityX < 0.08f))
+                 velocityX = 0.0f;
+             if (!isforwP && !isbackP && velocityZ != 0 && (velocityZ > -0.08f && velocityZ < 0.08f))
+                 velocityZ = 0.0f;
+         }
+
     }
-
-}
