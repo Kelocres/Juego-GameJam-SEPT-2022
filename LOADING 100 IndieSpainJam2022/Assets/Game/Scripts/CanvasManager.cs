@@ -17,6 +17,12 @@ public class CanvasManager : MonoBehaviour
     [TextArea]
     public string winMessage;
     public AudioClip winSound;
+    [Header("Lose")]
+    public GameObject loseCanvas;
+    public TextMeshProUGUI losePlace;
+    [TextArea]
+    public string loseMessage;
+    public AudioClip loseSound;
 
 
     // Start is called before the first frame update
@@ -40,6 +46,14 @@ public class CanvasManager : MonoBehaviour
         timeManager.finalTime = timeManager.currentTime;
         timeManager.SaveRecord();
         recordText.text = TimeSpan.FromSeconds(timeManager.finalTime).ToString(@"mm\:ss\:fff");
+    }
+
+    public void ShowLoseCanvas()
+    {
+        loseCanvas.SetActive(true);
+        writer.Write(losePlace, loseMessage);
+        SoundManager.instance.PlaySound(loseSound);
+        SoundManager.instance.musicSource.Stop();
     }
 
     public void GoMenu()

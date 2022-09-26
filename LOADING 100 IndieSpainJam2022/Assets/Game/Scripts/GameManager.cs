@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
         }
         loadingBar -= points;
         canvasScript.UpdateSlider(loadingBar);
+        if(loadingBar <= 0)
+        {
+            LoseGame();
+        }
     }
 
     public void WinGame()
@@ -58,5 +62,13 @@ public class GameManager : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {Destroy(enemy);}
         canvasScript.ShowWinCanvas();
+    }
+
+    public void LoseGame()
+    {
+        GameObject.Find("EnemySpawner").SetActive(false);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies) { Destroy(enemy); }
+        canvasScript.ShowLoseCanvas();
     }
 }
