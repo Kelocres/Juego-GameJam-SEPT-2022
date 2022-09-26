@@ -17,7 +17,7 @@ public class EnemyStats : MonoBehaviour
     public void GetDamage(int damage)
     {
         health -= damage;
-        if(health < 0)
+        if(health <= 0)
         {
             SoundManager.instance.PlaySound(enemyDieSound);
             deadEffect.transform.parent = null;
@@ -26,5 +26,13 @@ public class EnemyStats : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    public void colision()
+    {
+        SoundManager.instance.PlaySound(enemyDieSound);
+        deadEffect.transform.parent = null;
+        deadEffect.SetActive(true);
+        Destroy(gameObject);
     }
 }

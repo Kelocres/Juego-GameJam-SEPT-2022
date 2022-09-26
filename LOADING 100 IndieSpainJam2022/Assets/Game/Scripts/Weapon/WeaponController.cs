@@ -22,7 +22,9 @@ public class WeaponController : MonoBehaviour
 
     public float RemainingSecondsToBeAbleToShoot { get => _remainingSecondsToBeAbleToShoot; set => _remainingSecondsToBeAbleToShoot = value; }
     public string ActiveProjectile { get => _activeProjectile; set => _activeProjectile = value; }
-
+    [Header("Sound")]
+    public AudioSource source;
+    public AudioClip soundShoot;
     //public float FireRateInSeconds { get => _fireRateInSeconds; set => _fireRateInSeconds = value; }
     public enum ProjectileT
     {
@@ -70,6 +72,7 @@ public class WeaponController : MonoBehaviour
     }
     private void Shoot(Quaternion rotation)
     {
+        source.PlayOneShot(soundShoot);
         var projectile=_projectileSpawner.create(ActiveProjectile,
                                  _projectileSpawnPosition.position,
                                  Quaternion.identity);

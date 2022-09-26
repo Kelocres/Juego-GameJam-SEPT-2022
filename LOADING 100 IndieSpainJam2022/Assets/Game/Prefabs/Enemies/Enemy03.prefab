@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 231384084069457211}
   - component: {fileID: 4308967339581324078}
   - component: {fileID: 734973877499062649}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 3048646066846305977}
   - component: {fileID: 2523195543287558358}
   - component: {fileID: 872248564564005388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy03
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725ad898123e0ef4dbc0e1fad86f8bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 3
   health: 0
   deadEffect: {fileID: 4708875694923642252}
   enemyDieSound: {fileID: 8300000, guid: 5bad8b4740e8bf8478f9538c4fc82659, type: 3}
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bomb: {fileID: 231384084069457214}
   damage: 5
-  delay: 2
+  delay: 0.5
   explosion: {fileID: 1509603779468935944}
   expSound: {fileID: 8300000, guid: 60e98b0aa34d7934e85c085722d33ba0, type: 3}
   source: {fileID: 872248564564005388}
@@ -255,7 +255,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 12.07, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2523195543287558358
 Rigidbody:
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 1461171025507105140}
   - component: {fileID: 1509603779468935944}
   - component: {fileID: 1028093345394079702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5326,9 +5326,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 6f9d75194386dc94c88bf0ea7d3669ad, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -674382357360132614, guid: 6f9d75194386dc94c88bf0ea7d3669ad, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6f9d75194386dc94c88bf0ea7d3669ad, type: 3}
       propertyPath: m_Name
       value: Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f9d75194386dc94c88bf0ea7d3669ad, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6844234954373499210, guid: 6f9d75194386dc94c88bf0ea7d3669ad, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9d75194386dc94c88bf0ea7d3669ad, type: 3}
@@ -5416,6 +5432,10 @@ PrefabInstance:
     - target: {fileID: 3143067033732766474, guid: adb94223e5bf9c6479e40c823c788a07, type: 3}
       propertyPath: m_Name
       value: DeadEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3143067033732766474, guid: adb94223e5bf9c6479e40c823c788a07, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adb94223e5bf9c6479e40c823c788a07, type: 3}

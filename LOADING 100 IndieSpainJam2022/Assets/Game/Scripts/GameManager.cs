@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         mapScript = GameObject.Find("MapGenerator").GetComponent<MapGenerationScript>();
+        canvasScript = GameObject.Find("UI_Canvas").GetComponent<CanvasManager>();
     }
     public void FillBar(int points)
     {

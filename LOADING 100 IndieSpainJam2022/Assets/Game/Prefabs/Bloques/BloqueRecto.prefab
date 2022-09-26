@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 841981747506701071}
   - component: {fileID: 8319666548366919628}
   - component: {fileID: -1429347110392558957}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BloqueRecto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,6 +60,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitKind: floor
+  walls: []
+  sound_Created: {fileID: 0}
+  sound_Destroyed: {fileID: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &841981746839506652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 88eb4b8426d33844e828c8b609e8cf37, type: 3}
       propertyPath: m_Name
       value: ModeloBloqueRecto
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 88eb4b8426d33844e828c8b609e8cf37, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88eb4b8426d33844e828c8b609e8cf37, type: 3}

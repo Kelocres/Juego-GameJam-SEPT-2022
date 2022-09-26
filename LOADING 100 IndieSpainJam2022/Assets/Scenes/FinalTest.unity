@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 41360765}
   - component: {fileID: 41360764}
   - component: {fileID: 41360768}
+  - component: {fileID: 41360770}
   - component: {fileID: 41360769}
   m_Layer: 5
   m_Name: UI_Canvas
@@ -299,6 +300,23 @@ MonoBehaviour:
   winMessage: "WELL DONE! \nbut... \nWe lie, there's no game to load.\nWhy no try
     to get a better time?"
   winSound: {fileID: 8300000, guid: 0b7547abdda2a7f4d9b3e3c5c346e693, type: 3}
+--- !u!114 &41360770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41360763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0024e3a318580ac41b5951de93d63621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar_loading: {fileID: 0}
+  bar_powerBlue: {fileID: 0}
+  _playerMediator: {fileID: 628061522}
+  initTimeUntilRefillR: 5
+  initTimeUntilRefillW: 7
 --- !u!1 &47257604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,8 +1697,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 327401491}
-  m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: 5.531935, y: 22.38677, z: -39.211926}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 5.2931585, y: 11.54276, z: -43.927036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2948,6 +2966,8 @@ MonoBehaviour:
   _remainingSecondsToBeAbleToShoot: 0
   _defaultProjectId: {fileID: 11400000, guid: 96391e0b34a5b4d40a03c1be3fa5ef24, type: 2}
   projectileConfig: {fileID: 11400000, guid: 0ad26da0a33fdfd46803fccd27021d61, type: 2}
+  source: {fileID: 1925607803}
+  soundShoot: {fileID: 8300000, guid: 543aea3ab0c9a154a8ebff93c13f8ba6, type: 3}
 --- !u!114 &628061528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3812,7 +3832,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1077046432}
   - component: {fileID: 1077046433}
-  - component: {fileID: 1077046434}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3848,24 +3867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingBar: 5
-  canvasScript: {fileID: 41360769}
---- !u!114 &1077046434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077046430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0024e3a318580ac41b5951de93d63621, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar_loading: {fileID: 0}
-  bar_powerBlue: {fileID: 0}
-  _playerMediator: {fileID: 628061522}
-  initTimeUntilRefillR: 5
-  initTimeUntilRefillW: 7
+  canvasScript: {fileID: 0}
 --- !u!1 &1087866231
 GameObject:
   m_ObjectHideFlags: 0
@@ -4287,15 +4289,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273825582}
-  m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: 5.531935, y: 22.38677, z: -39.211926}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 5.2931585, y: 11.54276, z: -43.927036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 55350554}
   m_Father: {fileID: 0}
   m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 32, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!1 &1302807990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,7 +4466,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336224795}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: -1.15, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4473,7 +4475,7 @@ Transform:
   - {fileID: 2136424972}
   m_Father: {fileID: 1925607802}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!1 &1337736377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6100,6 +6102,7 @@ GameObject:
   - component: {fileID: 1925607800}
   - component: {fileID: 1925607799}
   - component: {fileID: 1925607798}
+  - component: {fileID: 1925607803}
   m_Layer: 0
   m_Name: Personaje01
   m_TagString: Player
@@ -6192,6 +6195,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1925607803
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925607797}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1930598332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6988,6 +7087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 41360767}
     m_Modifications:
+    - target: {fileID: 830381548883810822, guid: 586afd26a29c8ac47a12bcb41fa47c15, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 830381548999969977, guid: 586afd26a29c8ac47a12bcb41fa47c15, type: 3}
       propertyPath: m_Name
       value: PowerIcons

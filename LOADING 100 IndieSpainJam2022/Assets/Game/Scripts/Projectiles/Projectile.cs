@@ -8,7 +8,7 @@ public abstract class Projectile : MonoBehaviour
     protected Transform _transform;
     [SerializeField] private ProjectileId _id;
     [SerializeField]
-    private float desTroyIn;
+    private float desTroyIn = 3;
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] protected float damage;
    

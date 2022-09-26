@@ -24,5 +24,15 @@ namespace Assets.Game.Scripts.Projectiles
         {
             
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                collision.gameObject.GetComponent<EnemyStats>().GetDamage(1);
+                collision.rigidbody.velocity = Vector3.zero;
+                Destroy(gameObject);
+            }
+        }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3155035533535097944}
   - component: {fileID: 6620310247310651920}
   - component: {fileID: 4439783947288579162}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5031729, y: 0.4720044, z: 0.5235529}
+  m_Size: {x: 1.25, y: 1.28, z: 1.08}
   m_Center: {x: -0.013039112, y: -0.015034676, z: 0.011370182}
 --- !u!114 &4439783947288579162
 MonoBehaviour:
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5686158419549635646}
   - component: {fileID: 8952867809203697130}
   - component: {fileID: 1488426377399222009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 734512866390858164}
   - component: {fileID: 9150094814085741607}
   - component: {fileID: 617744682569937115}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4998,7 +4998,7 @@ GameObject:
   - component: {fileID: 1778452531360234234}
   - component: {fileID: 2730809549823152120}
   - component: {fileID: 2526075577040850090}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}

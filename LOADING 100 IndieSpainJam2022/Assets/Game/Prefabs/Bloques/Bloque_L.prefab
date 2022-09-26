@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5606530317540174667}
   - component: {fileID: 4771016877378769372}
   - component: {fileID: 6683996019171836448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bloque_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,6 +60,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitKind: floor
+  walls: []
+  sound_Created: {fileID: 0}
+  sound_Destroyed: {fileID: 0}
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &5606530315478371239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +139,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 541953cf35d8b1648a68e5d6ca31ceb5, type: 3}
       propertyPath: m_Name
       value: ModeloBloque_L
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 541953cf35d8b1648a68e5d6ca31ceb5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 541953cf35d8b1648a68e5d6ca31ceb5, type: 3}
