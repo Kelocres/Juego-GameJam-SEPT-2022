@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using static WeaponController;
 
 public class PlayerMediator : MonoBehaviour
@@ -60,13 +61,13 @@ public class PlayerMediator : MonoBehaviour
         animationcontroller.moveAnim();         
     }
     //esto no se deberia hacer aca por tiempo lo pongo aca deberia crear otro mediator que se encargue del ui y se comunique con los controladores de ui y entre los mediators se comuniquen :(
-    public bool canfillBarActivatePower(Image bar_power )
+    public bool canfillBarActivatePower(Image bar_power,TextMeshProUGUI counter )
     {             
-        return uicontroller.fillBarActivatePower(bar_power);//
+        return uicontroller.fillBarActivatePower(bar_power, counter);//
     }
-    public bool fillBarActivatePowerProjectile(Image bar_power)
+    public bool fillBarActivatePowerProjectile(Image bar_power, TextMeshProUGUI counter)
     {
-        return uicontroller.fillBarActivatePowerProjectile(bar_power);//
+        return uicontroller.fillBarActivatePowerProjectile(bar_power,counter);//
     }
     
     public void resetBarR()
