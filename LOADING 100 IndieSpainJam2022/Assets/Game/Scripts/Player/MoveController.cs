@@ -16,12 +16,17 @@ public class MoveController : MonoBehaviour
     private int MascaraSuelo;
     private float camRayLongitud = 1000f;
     private Vector3 posCamara;
-
+    /// <summary>
+    /// 
+    /// </summary>
+    bool isSprinting;
+    public bool IsSprinting { get => isSprinting; set => isSprinting = value; }
     public Quaternion NewRotation { get => newRotation; set => newRotation = value; }
 
     private void Start()
     {
         MascaraSuelo = LayerMask.GetMask("Floor");
+        IsSprinting = false;
     }
     public void Configure(GameObject gobj) {
         _gameObject=gobj;
