@@ -103,7 +103,7 @@ public class MapUnitScript : MonoBehaviour
     {
         //Decidir un número aleatorio de paredes
         //Si es 0 o menor, no se crea ninguna
-        int randAmount = Random.Range(0, 6);
+        int randAmount = Random.Range(1, 7);
 
         if (randAmount <= 0) return;
 
