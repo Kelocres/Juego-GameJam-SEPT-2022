@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiController : MonoBehaviour
 {
@@ -24,14 +25,14 @@ public class UiController : MonoBehaviour
     {
         
     }
-    public bool fillBarActivatePower(Image bar_power)
+    public bool fillBarActivatePower(Image bar_power, TextMeshProUGUI counter)
     {
 
         EnergyForSpeed = Mathf.Clamp(EnergyForSpeed, 0, 100);
         EnergyForSpeed += 20; 
         bar_power.fillAmount = EnergyForSpeed / 100;
-        
-        if(bar_power.fillAmount == 1)
+        counter.text = energyForSpeed.ToString();
+        if (bar_power.fillAmount == 1)
         {
             return false;
         }
@@ -41,13 +42,13 @@ public class UiController : MonoBehaviour
         } 
         
     }
-    public bool fillBarActivatePowerProjectile(Image bar_power)
+    public bool fillBarActivatePowerProjectile(Image bar_power, TextMeshProUGUI counter)
     {
 
         EnergyForProjectile = Mathf.Clamp(EnergyForSpeed, 0, 100);
         EnergyForProjectile += 10;
         bar_power.fillAmount = EnergyForProjectile / 100;
-
+        counter.text = energyForProjectile.ToString();
         if (bar_power.fillAmount == 1)
         {
             return false;

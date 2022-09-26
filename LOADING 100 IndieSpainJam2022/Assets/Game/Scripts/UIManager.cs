@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Object = UnityEngine.Object;
 
 public class UIManager : MonoBehaviour
@@ -22,6 +23,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private float initTimeUntilRefillR, initTimeUntilRefillW;
     private float initTimeR,initTimeW;
+
+    public TextMeshProUGUI redcounter;
+    public TextMeshProUGUI whiteCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +68,7 @@ public class UIManager : MonoBehaviour
                 InvokeRepeating("fillBarPowerWhite", 3.0f, 3f);
                  _playerMediator.resetBarR();
                  _playerMediator.CanChangeProjectileType(WeaponController.ProjectileT.Normal);
-        }
+             }
                 
          
     }
@@ -72,7 +76,7 @@ public class UIManager : MonoBehaviour
     //cada barra por separado en un arreglo
     public void fillBarPower()
     {
-          canFillRed=_playerMediator.canfillBarActivatePower(bar_powerRed);
+          canFillRed=_playerMediator.canfillBarActivatePower(bar_powerRed,redcounter);
         if (!canFillRed)
         {
             initTimeR = initTimeUntilRefillR + Time.time;
@@ -83,10 +87,10 @@ public class UIManager : MonoBehaviour
     }
     public void fillBarPowerWhite()
     {
-        canfillWhite = _playerMediator.fillBarActivatePowerProjectile(bar_powerWhite);
+        canfillWhite = _playerMediator.fillBarActivatePowerProjectile(bar_powerWhite, whiteCounter);
         if (!canfillWhite)
         {
-            initTimeW = initTimeUntilRefillW + Time.time;
+            initTimeW = initTimeUntilRefillW + Time.time;          
             CancelInvoke("fillBarPowerWhite");
             _playerMediator.CanChangeProjectileType(WeaponController.ProjectileT.Especial);
         }
