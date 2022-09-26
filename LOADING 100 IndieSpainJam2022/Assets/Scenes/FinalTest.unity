@@ -3862,10 +3862,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bar_loading: {fileID: 0}
-  bar_powerWhite: {fileID: 0}
   bar_powerBlue: {fileID: 0}
   _playerMediator: {fileID: 628061522}
   initTimeUntilRefillR: 5
+  initTimeUntilRefillW: 7
 --- !u!1 &1087866231
 GameObject:
   m_ObjectHideFlags: 0
