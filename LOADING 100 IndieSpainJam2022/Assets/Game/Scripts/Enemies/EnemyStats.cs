@@ -8,6 +8,7 @@ public class EnemyStats : MonoBehaviour
     public int health;
     public GameObject deadEffect;
     public AudioClip enemyDieSound;
+    public ParticleSystem hitEffect;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class EnemyStats : MonoBehaviour
 
     public void GetDamage(int damage)
     {
+        hitEffect.Play();
         health -= damage;
         if(health <= 0)
         {
