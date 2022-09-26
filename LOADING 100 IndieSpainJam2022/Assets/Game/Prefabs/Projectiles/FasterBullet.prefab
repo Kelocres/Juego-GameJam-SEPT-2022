@@ -104,8 +104,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.7025088, b: 0, a: 1}
-      key1: {r: 1, g: 0.21883923, b: 0, a: 0}
+      key0: {r: 1, g: 0.78679246, b: 0.95987594, a: 1}
+      key1: {r: 0.9436493, g: 0, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -149,10 +149,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7153194046510825260}
-  - component: {fileID: -2764254381226310480}
-  - component: {fileID: 3092515157363080623}
+  - component: {fileID: 4546776565716916275}
+  - component: {fileID: 6703009896509911092}
   m_Layer: 0
-  m_Name: Bullet_for_double
+  m_Name: FasterBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &-2764254381226310480
+--- !u!54 &4546776565716916275
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,7 +192,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3092515157363080623
+--- !u!114 &6703009896509911092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -431,8 +431,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.658564, b: 0, a: 1}
-      maxColor: {r: 1, g: 0.18178445, b: 0, a: 1}
+      minColor: {r: 0.5357933, g: 0, b: 1, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.16167259, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5243,8 +5243,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.84362215, b: 0.135849, a: 1}
-      maxColor: {r: 1, g: 0.29622638, b: 0.29622638, a: 1}
+      minColor: {r: 1, g: 0.9012007, b: 0.45660377, a: 1}
+      maxColor: {r: 1, g: 0.2980392, b: 0.5677242, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
