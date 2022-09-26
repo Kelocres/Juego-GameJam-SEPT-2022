@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float  sprintSpeed, walkSpeed, smoothTime, mouseSensitivity;
     [SerializeField] private PlayerMediator mediator;
 
+    
+
 
     public Animator anim;
     private void Awake()
@@ -20,7 +22,6 @@ public class Player : MonoBehaviour
     {
          
         mediator.Configure(gameObject.gameObject);
-        
         
     }
 
@@ -54,5 +55,15 @@ public class Player : MonoBehaviour
     {
         return mediator.getMouseRotation();
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "collider_caida")
+        {
+
+            GameManager.instance.EmptyBar(5);
+            transform.position = posRespawn.position;
+        }
+    }*/
 
 }

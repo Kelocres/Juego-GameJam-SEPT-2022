@@ -16,6 +16,8 @@ public class MoveController : MonoBehaviour
     private int MascaraSuelo;
     private float camRayLongitud = 1000f;
     private Vector3 posCamara;
+
+    //public bool useGravity = false;
     /// <summary>
     /// 
     /// </summary>
@@ -72,13 +74,16 @@ public class MoveController : MonoBehaviour
     {
         if (x == 0 && z == 0)
         {
-            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
         }
         //moveDir.Set(x, 0, z);
-        Vector3 moveDir = new Vector3(x,0,z).normalized;
+        Vector3 moveDir;
+        moveDir = new Vector3(x, 0, z).normalized;
         //moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * speed, ref smoothMoveVelocity, smoothTime);
         //_rigidbody.MovePosition(_rigidbody.position + _transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);       
         moveAmount = moveDir.normalized * speed * Time.deltaTime;
+        Vector3 gravity = new Vector3(0, -100, 0);
+        //_rigidbody.MovePosition(_transform.position + moveAmount + gravity);
         _rigidbody.MovePosition(_transform.position + moveAmount);
     }
 
