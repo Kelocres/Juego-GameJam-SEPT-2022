@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
     }
     public void fillBarPowerWhite()
     {
-        canfillWhite = _playerMediator.fillBarActivatePowerProjectile(bar_powerWhite, whiteCounter);
+        canfillWhite = _playerMediator.fillBarActivatePowerProjectile(bar_powerWhite,whiteCounter);
         if (!canfillWhite)
         {
             initTimeW = initTimeUntilRefillW + Time.time;          

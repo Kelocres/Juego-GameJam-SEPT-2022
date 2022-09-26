@@ -2376,7 +2376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 - 20::00:00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
   m_sharedMaterial: {fileID: -3559048572298346087, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
@@ -10081,7 +10081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 - 20::00:00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
   m_sharedMaterial: {fileID: -3559048572298346087, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
@@ -10505,7 +10505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1093170520}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 720190272}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: closeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1792322515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11094,7 +11106,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 - 20::00:00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}
   m_sharedMaterial: {fileID: -3559048572298346087, guid: 478280e2d487f3240856dd9e4e467f70, type: 2}

@@ -32,13 +32,9 @@ public class TimeManager : MonoBehaviour
     {
         List<float> records = Array.ConvertAll(PlayerPrefs.GetString("record", "0,0,0").Split(","), float.Parse).ToList();
         records.Add(finalTime);
-        List<float> newRecords = records.OrderBy(x=>x).ToList();
+        List<float> newRecords = records.OrderBy(x=> -x).ToList();
         newRecords.RemoveAt(newRecords.Count - 1);
-        if(PlayerPrefs.GetFloat("record", 0) < finalTime)
-        {
-            
-            PlayerPrefs.SetString("record",String.Join(",",newRecords.ToArray()));
-        }
+        PlayerPrefs.SetString("record",String.Join(",",newRecords.ToArray()));
     }
 
 

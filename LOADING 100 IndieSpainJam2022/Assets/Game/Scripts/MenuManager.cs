@@ -62,15 +62,32 @@ public class MenuManager : MonoBehaviour
     {
         recordsPanel.SetActive(true);
 
-        List<float> records = Array.ConvertAll(PlayerPrefs.GetString("record", "0,0,0").Split(","), float.Parse).ToList().OrderBy(x => x).ToList();
-        record01.text = TimeSpan.FromSeconds(records[0]).ToString(@"mm\:ss\:fff");
-        record02.text = TimeSpan.FromSeconds(records[1]).ToString(@"mm\:ss\:fff");
-        record03.text = TimeSpan.FromSeconds(records[2]).ToString(@"mm\:ss\:fff");
+        List<float> records = Array.ConvertAll(PlayerPrefs.GetString("record", "0,0,0").Split(","), float.Parse).ToList().OrderBy(x => x +1).ToList();
+
+        if(records[0] != 0)
+        {
+            record01.text = TimeSpan.FromSeconds(records[0]).ToString(@"mm\:ss\:fff");
+        }
+        if (records[1] != 0)
+        {
+            record02.text = TimeSpan.FromSeconds(records[1]).ToString(@"mm\:ss\:fff");
+        }
+        if (records[2] != 0)
+        {
+            record03.text = TimeSpan.FromSeconds(records[2]).ToString(@"mm\:ss\:fff");
+        }
+
+        
     }
 
     public void CloseRecords()
     {
         recordsPanel.SetActive(false);
+    }
+
+    public void closeGame()
+    {
+        Application.Quit();
     }
     
 }

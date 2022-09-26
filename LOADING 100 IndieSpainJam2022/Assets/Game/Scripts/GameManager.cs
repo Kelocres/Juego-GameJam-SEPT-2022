@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         canvasScript.UpdateSlider(loadingBar);
         //Vector3 scalame = new Vector3(loadingBar / 100f, 1f, 1f);
         //bar_loading.rectTransform.localScale = scalame;
-        if(loadingBar%3 == 0)
+        if(loadingBar%2 == 0)
         {
             mapScript.StartExpandMap(1);
             Debug.Log("se amplia");

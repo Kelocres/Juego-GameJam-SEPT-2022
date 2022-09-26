@@ -29,7 +29,7 @@ public class UiController : MonoBehaviour
     {
 
         EnergyForSpeed = Mathf.Clamp(EnergyForSpeed, 0, 100);
-        EnergyForSpeed += 20; 
+        EnergyForSpeed += 5; 
         bar_power.fillAmount = EnergyForSpeed / 100;
         counter.text = energyForSpeed.ToString();
         if (bar_power.fillAmount == 1)

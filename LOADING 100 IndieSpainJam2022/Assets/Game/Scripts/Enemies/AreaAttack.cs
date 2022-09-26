@@ -6,7 +6,7 @@ public class AreaAttack : MonoBehaviour
 {
     public GameObject bomb;
     public int damage;
-    public float delay = 3;
+    public float delay = 0.5f;
     EnemyMove moveScript;
     public ParticleSystem explosion;
     public AudioClip expSound;
@@ -27,7 +27,7 @@ public class AreaAttack : MonoBehaviour
 
     IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         moveScript.enabled = false;
         yield return new WaitForSeconds(delay);
         Explode();    
