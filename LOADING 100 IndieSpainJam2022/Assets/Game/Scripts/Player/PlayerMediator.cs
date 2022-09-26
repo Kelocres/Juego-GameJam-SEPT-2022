@@ -43,9 +43,7 @@ public class PlayerMediator : MonoBehaviour
     {
               
             weaponcontroller.ChangeProjectileType(projectileT);
-            
-       
-      
+                   
     }
     public void CanLook(float mouseSensitivity)
     {
@@ -66,9 +64,18 @@ public class PlayerMediator : MonoBehaviour
     {             
         return uicontroller.fillBarActivatePower(bar_power);//
     }
+    public bool fillBarActivatePowerProjectile(Image bar_power)
+    {
+        return uicontroller.fillBarActivatePowerProjectile(bar_power);//
+    }
+    
     public void resetBarR()
     {
         uicontroller.EnergyForSpeed=0;
+    }
+    public void resetBarW()
+    {
+        uicontroller.EnergyForSpeed = 0;
     }
     public Quaternion getMouseRotation()
     {

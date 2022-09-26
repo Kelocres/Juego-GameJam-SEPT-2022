@@ -21,6 +21,7 @@ public class WeaponController : MonoBehaviour
     private float _normalfireRateInSeconds, _especialfireRateInSeconds;
 
     public float RemainingSecondsToBeAbleToShoot { get => _remainingSecondsToBeAbleToShoot; set => _remainingSecondsToBeAbleToShoot = value; }
+    public string ActiveProjectile { get => _activeProjectile; set => _activeProjectile = value; }
 
     //public float FireRateInSeconds { get => _fireRateInSeconds; set => _fireRateInSeconds = value; }
     public enum ProjectileT
@@ -32,7 +33,7 @@ public class WeaponController : MonoBehaviour
     private void Awake()
     {
         
-        _activeProjectile = _defaultProjectId.Value;
+        ActiveProjectile = _defaultProjectId.Value;
         ProjectilesConfiguration _projectileConfig = Instantiate(projectileConfig);
         _projectileSpawner = new ProjectileSpawner(_projectileConfig);
         _normalfireRateInSeconds = _fireRateInSeconds;
@@ -44,14 +45,14 @@ public class WeaponController : MonoBehaviour
          //   return;
             if (pType == ProjectileT.Especial)
             {
-            _fireRateInSeconds = _especialfireRateInSeconds;
-            _activeProjectile = "Especial";
+             _fireRateInSeconds = _especialfireRateInSeconds;
+                ActiveProjectile = "Especial";
 
             }
             else
             {
                 _fireRateInSeconds = _normalfireRateInSeconds;
-                 _activeProjectile = "Normal";
+                 ActiveProjectile = "Normal";
              }
             
     }
@@ -69,7 +70,7 @@ public class WeaponController : MonoBehaviour
     }
     private void Shoot(Quaternion rotation)
     {
-        var projectile=_projectileSpawner.create(_activeProjectile,
+        var projectile=_projectileSpawner.create(ActiveProjectile,
                                  _projectileSpawnPosition.position,
                                  Quaternion.identity);
         projectile.transform.localRotation = rotation;

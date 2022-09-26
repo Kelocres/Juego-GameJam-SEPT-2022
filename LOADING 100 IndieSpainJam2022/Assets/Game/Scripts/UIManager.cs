@@ -12,22 +12,23 @@ public class UIManager : MonoBehaviour
     private GameManager _gameManager;
 
     public RawImage bar_loading;
-    public RawImage bar_powerWhite;
+    //public RawImage bar_powerWhite;
     //public RawImage bar_powerRed;
     public RawImage bar_powerBlue;
-    private Image bar_powerRed;
+    private Image bar_powerRed, bar_powerWhite;
     [SerializeField]
     private PlayerMediator _playerMediator;
-    bool canFillRed;
+    bool canFillRed,canfillWhite;
     [SerializeField]
-    private float initTimeUntilRefillR;
-    private float initTimeR;
+    private float initTimeUntilRefillR, initTimeUntilRefillW;
+    private float initTimeR,initTimeW;
     // Start is called before the first frame update
     void Start()
     {
         canFillRed = true;
-        var barra = GameObject.FindGameObjectWithTag("bar_powerRed");
+    
         bar_powerRed = GameObject.FindGameObjectWithTag("bar_powerRed").GetComponent<Image>();
+        bar_powerWhite = GameObject.FindGameObjectWithTag("bar_powerWhite").GetComponent<Image>();
         /*_player = FindObjectOfType<Player>();
         _mapGeneration = FindObjectOfType<MapGenerationScript>();
         _gameManager = FindObjectOfType<GameManager>();
@@ -36,8 +37,9 @@ public class UIManager : MonoBehaviour
         bar_powerWhite = GameObject.FindGameObjectWithTag("bar_powerWhite").GetComponent<RawImage>();
         
         bar_powerBlue = GameObject.FindGameObjectWithTag("bar_powerBlue").GetComponent<RawImage>();*/
-        
-        InvokeRepeating("fillBarPower", 5.0f, 3f);
+
+        InvokeRepeating("fillBarPower", 5.0f, 2f);
+        InvokeRepeating("fillBarPowerWhite", 7.0f, 3f);
     }
 
     // Update is called once per frame
@@ -55,10 +57,19 @@ public class UIManager : MonoBehaviour
                 InvokeRepeating("fillBarPower", 2.0f, 2f);
                 _playerMediator.resetBarR();
                 _playerMediator.trychangeMoveT();
+            }
+            if(Time.time> initTimeW && initTimeW > 0)
+            {
+                initTimeW = 0;
+                InvokeRepeating("fillBarPowerWhite", 3.0f, 3f);
+                 _playerMediator.resetBarR();
+                 _playerMediator.CanChangeProjectileType(WeaponController.ProjectileT.Normal);
         }
                 
          
     }
+    //ya que cada barra tiene su propio tiempo seria bueno crear una clase en si que sea barra asi controlar
+    //cada barra por separado en un arreglo
     public void fillBarPower()
     {
           canFillRed=_playerMediator.canfillBarActivatePower(bar_powerRed);
@@ -70,5 +81,15 @@ public class UIManager : MonoBehaviour
         }
             
     }
+    public void fillBarPowerWhite()
+    {
+        canfillWhite = _playerMediator.fillBarActivatePowerProjectile(bar_powerWhite);
+        if (!canfillWhite)
+        {
+            initTimeW = initTimeUntilRefillW + Time.time;
+            CancelInvoke("fillBarPowerWhite");
+            _playerMediator.CanChangeProjectileType(WeaponController.ProjectileT.Especial);
+        }
 
+    }
 }
